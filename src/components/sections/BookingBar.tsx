@@ -6,7 +6,7 @@ import { openWhatsApp } from "@/lib/whatsapp";
 
 const destinations = [
   "Punta Cana",
-  "Samana",
+  "Samaná",
   "Bayahibe",
   "Puerto Plata",
   "Santo Domingo",
@@ -20,8 +20,8 @@ const destinations = [
 ];
 
 const travelerOptions = [
-  "1 Habitacion, 2 Adultos",
-  "1 Habitacion, 1 Adulto",
+  "1 Habitación, 2 Adultos",
+  "1 Habitación, 1 Adulto",
   "2 Habitaciones, 4 Adultos",
   "Familiar (3+)",
   "Grupo",
@@ -58,7 +58,7 @@ const BookingBar = () => {
     const selectedTravelers = travelersRef.current?.value || travelers;
 
     const message = [
-      "Solicitud de cotizacion desde la web de Garcia Travel:",
+      "Solicitud de cotización desde la web de Garcia Travel:",
       `Destino: ${selectedDestination || "Por definir"}`,
       `Fecha de salida: ${formatDate(selectedDepartureDate)}`,
       `Fecha de llegada: ${formatDate(selectedArrivalDate)}`,
@@ -153,8 +153,8 @@ const BookingBar = () => {
         <button
           type="button"
           onClick={handleSearch}
-          aria-label="Enviar busqueda por WhatsApp"
-          title="Enviar busqueda por WhatsApp"
+          aria-label="Enviar búsqueda por WhatsApp"
+          title="Enviar búsqueda por WhatsApp"
           className="w-full md:w-auto mt-2 md:mt-0 bg-brand-teal text-white p-4 rounded-xl hover:bg-brand-teal/90 transition-colors flex items-center justify-center"
         >
           <Search size={24} />

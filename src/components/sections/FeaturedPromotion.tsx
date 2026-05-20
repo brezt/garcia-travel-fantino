@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 import { openWhatsApp } from "@/lib/whatsapp";
 
 const includes = [
-  { Icon: Plane, text: "Boleto aereo con equipaje en bodega" },
+  { Icon: Plane, text: "Boleto aéreo con equipaje en bodega" },
   { Icon: Hotel, text: "Alojamiento en hotel de lujo en El Poblado" },
   { Icon: Van, text: "Traslados incluidos" },
   { Icon: MapPin, text: "2 excursiones principales" },
@@ -30,7 +30,7 @@ const includes = [
 const FeaturedPromotion = () => {
   const handlePromoClick = () => {
     openWhatsApp(
-      "Hola Garcia Travel, me interesa la promocion Feria de las Flores en Medellin 2026 del 07 al 11 de agosto. Podrian enviarme mas detalles y disponibilidad?",
+      "Hola Garcia Travel, me interesa la promoción Feria de las Flores en Medellín 2026 del 07 al 11 de agosto. ¿Podrían enviarme más detalles y disponibilidad?",
     );
   };
 
@@ -40,10 +40,10 @@ const FeaturedPromotion = () => {
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal">
-              Promocion destacada
+              Promoción destacada
             </p>
             <h2 className="font-montserrat text-4xl font-black uppercase leading-tight text-brand-navy md:text-5xl">
-              Feria de las Flores en Medellin 2026
+              Feria de las Flores en Medellín 2026
             </h2>
           </div>
           <button
@@ -64,7 +64,7 @@ const FeaturedPromotion = () => {
           <div className="w-full bg-brand-slate">
             <img
               src="/images/promo-feria-flores-medellin.png"
-              alt="Promocion Feria de las Flores en Medellin de Garcia Travel Fantino"
+              alt="Promoción Feria de las Flores en Medellín de Garcia Travel Fantino"
               width={1672}
               height={941}
               loading="eager"
@@ -79,7 +79,7 @@ const FeaturedPromotion = () => {
               <MapPin className="text-brand-teal" size={20} />
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-brand-navy/50">Destino</p>
-                <p className="text-sm font-bold text-brand-navy">Medellin, Colombia</p>
+                <p className="text-sm font-bold text-brand-navy">Medellín, Colombia</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-2xl bg-brand-slate px-5 py-4">
@@ -104,13 +104,13 @@ const FeaturedPromotion = () => {
                 <Sprout size={24} />
               </div>
               <h3 className="font-montserrat mb-4 text-2xl font-black uppercase leading-tight">
-                Vive la fiesta mas colorida de Colombia
+                Vive la fiesta más colorida de Colombia
               </h3>
               <p className="text-sm leading-relaxed text-white/85">
-                La Feria de las Flores es la celebracion por excelencia de Medellin: un espectaculo lleno de tradicion, musica, cultura y los iconicos silleteros que llenan la ciudad de vida y alegria.
+                La Feria de las Flores es la celebración por excelencia de Medellín: un espectáculo lleno de tradición, música, cultura y los icónicos silleteros que llenan la ciudad de vida y alegría.
               </p>
               <p className="mt-5 text-sm leading-relaxed text-white/85">
-                Disfruta desfiles, eventos culturales y el ambiente festivo que convierte a Medellin en el destino mas vibrante de la temporada.
+                Disfruta desfiles, eventos culturales y el ambiente festivo que convierte a Medellín en el destino más vibrante de la temporada.
               </p>
             </div>
 

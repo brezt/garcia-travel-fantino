@@ -2,14 +2,14 @@ export const siteConfig = {
   name: "Garcia Travel Fantino",
   legalName: "Garcia Travel Fantino",
   description:
-    "Agencia de viajes en Fantino, Republica Dominicana. Cotiza vuelos, hoteles, excursiones, cruceros y paquetes turisticos nacionales e internacionales con asesoria personalizada.",
+    "Agencia de viajes en Fantino, República Dominicana. Cotiza vuelos, hoteles, excursiones, cruceros y paquetes turísticos nacionales e internacionales con asesoría personalizada.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://garciatravelfantino.com",
   phone: "+1 829 884 6811",
   phoneHref: "+18298846811",
   email: "info@garciatravelfantino.com",
   address: {
     locality: "Fantino",
-    region: "Sanchez Ramirez",
+    region: "Sánchez Ramírez",
     country: "DO",
   },
   mapsUrl: "https://maps.app.goo.gl/fRjMFPPwmgQexGEbA",

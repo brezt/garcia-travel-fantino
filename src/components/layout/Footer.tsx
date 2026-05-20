@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 
 const mapsUrl = siteConfig.mapsUrl;
 const mapsEmbedUrl =
-  "https://www.google.com/maps?q=Garcia%20Travel%20Fantino%2C%20Fantino%2C%20Republica%20Dominicana&output=embed";
+  "https://www.google.com/maps?q=Garcia%20Travel%20Fantino%2C%20Fantino%2C%20Rep%C3%BAblica%20Dominicana&output=embed";
 
 const InstagramIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
@@ -82,7 +82,7 @@ const Footer = () => {
 
         <div className="flex-1 flex justify-start md:justify-end">
           <div className="text-left md:text-right w-full max-w-[220px]">
-            <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6 text-left">Locacion</h4>
+            <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6 text-left">Ubicación</h4>
             <a
               href={mapsUrl}
               className="group block text-left"

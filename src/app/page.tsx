@@ -33,7 +33,7 @@ const jsonLd = {
   areaServed: [
     {
       "@type": "Country",
-      name: "Republica Dominicana",
+      name: "República Dominicana",
     },
     {
       "@type": "Place",
@@ -51,13 +51,13 @@ const jsonLd = {
   makesOffer: [
     {
       "@type": "Offer",
-      name: "Paquetes turisticos",
+      name: "Paquetes turísticos",
       description: "Vuelos, hoteles, excursiones, traslados y seguros de viajes.",
     },
     {
       "@type": "Offer",
-      name: "Feria de las Flores en Medellin 2026",
-      description: "Viaje a Medellin del 7 al 11 de agosto 2026 con alojamiento, traslados y excursiones.",
+      name: "Feria de las Flores en Medellín 2026",
+      description: "Viaje a Medellín del 7 al 11 de agosto 2026 con alojamiento, traslados y excursiones.",
       price: "850",
       priceCurrency: "USD",
     },
