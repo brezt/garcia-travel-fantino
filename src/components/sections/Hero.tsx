@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { openWhatsApp } from "@/lib/whatsapp";
@@ -60,6 +60,18 @@ const floatingIcons = [
 ];
 
 const Hero = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const updateVideoState = () => setShowVideo(mediaQuery.matches);
+
+    updateVideoState();
+    mediaQuery.addEventListener("change", updateVideoState);
+
+    return () => mediaQuery.removeEventListener("change", updateVideoState);
+  }, []);
+
   return (
     <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden flex items-center justify-center pt-20">
       <div className="absolute inset-0 z-0">
@@ -72,6 +84,21 @@ const Hero = () => {
           sizes="100vw"
           className="object-cover"
         />
+        {showVideo ? (
+          <video
+            className="absolute inset-0 hidden h-full w-full object-cover md:block"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/images/hero-beach.jpg"
+            aria-hidden="true"
+          >
+            <source src="/images/hero-video.webm" type="video/webm" />
+            <source src="/images/hero-video.mp4" type="video/mp4" />
+          </video>
+        ) : null}
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f7f9fb] scale-y-[1.02] origin-bottom" />
       </div>

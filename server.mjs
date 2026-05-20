@@ -17,10 +17,12 @@ const contentTypes = {
   ".jpeg": "image/jpeg",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".mp4": "video/mp4",
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".txt": "text/plain; charset=utf-8",
   ".webp": "image/webp",
+  ".webm": "video/webm",
   ".xml": "application/xml; charset=utf-8",
 };
 
@@ -32,7 +34,7 @@ const getCacheControl = (filePath) => {
     return "public, max-age=31536000, immutable";
   }
 
-  if ([".css", ".js", ".jpg", ".jpeg", ".png", ".svg", ".webp", ".ico"].includes(extension)) {
+  if ([".css", ".js", ".jpg", ".jpeg", ".png", ".svg", ".webp", ".ico", ".mp4", ".webm"].includes(extension)) {
     return "public, max-age=604800";
   }
 
