@@ -24,6 +24,21 @@ const contentTypes = {
   ".xml": "application/xml; charset=utf-8",
 };
 
+const getCacheControl = (filePath) => {
+  const normalizedPath = filePath.replaceAll("\\", "/");
+  const extension = path.extname(filePath);
+
+  if (normalizedPath.includes("/_next/static/")) {
+    return "public, max-age=31536000, immutable";
+  }
+
+  if ([".css", ".js", ".jpg", ".jpeg", ".png", ".svg", ".webp", ".ico"].includes(extension)) {
+    return "public, max-age=604800";
+  }
+
+  return "public, max-age=300";
+};
+
 const resolveFile = async (requestPath) => {
   const cleanPath = decodeURIComponent(requestPath.split("?")[0] || "/");
   const normalized = path.normalize(cleanPath).replace(/^(\.\.[/\\])+/, "");
@@ -55,7 +70,10 @@ createServer(async (req, res) => {
 
     const body = await readFile(filePath);
     const contentType = contentTypes[path.extname(filePath)] || "application/octet-stream";
-    res.writeHead(200, { "Content-Type": contentType });
+    res.writeHead(200, {
+      "Cache-Control": getCacheControl(filePath),
+      "Content-Type": contentType,
+    });
     res.end(body);
   } catch {
     res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { Compass, Luggage, MapPinned, Palmtree, Plane, ShipWheel } from "lucide-react";
@@ -62,13 +63,14 @@ const Hero = () => {
   return (
     <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden flex items-center justify-center pt-20">
       <div className="absolute inset-0 z-0">
-        <video
-          src="/images/Anima_imagen_para_landing_page_202605121702.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
+        <Image
+          src="/images/hero-beach.jpg"
+          alt="Pareja caminando por una playa tropical"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f7f9fb] scale-y-[1.02] origin-bottom" />
@@ -103,7 +105,7 @@ const Hero = () => {
               con
             </span>
             <span className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
-              García Travel
+              Garcia Travel
             </span>
           </div>
         </motion.div>
@@ -114,7 +116,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg md:text-xl text-white font-medium mb-10 max-w-2xl drop-shadow-md font-inter"
         >
-          Vuelos, hoteles y paquetes turísticos diseñados para ti. <br className="hidden md:block"/>
+          Vuelos, hoteles y paquetes turísticos diseñados para ti. <br className="hidden md:block" />
           Experiencias inolvidables con asesoría en exclusiva desde Fantino.
         </motion.p>
 
