@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TravelContentPage from "@/components/seo/TravelContentPage";
-import {
-  getContentJsonLd,
-  getPackageBySlug,
-  isExpired,
-  packages,
-} from "@/lib/travel-content";
+import { getContentJsonLd, isExpired } from "@/lib/travel-content";
+import { getPackageBySlug, getPackages } from "@/lib/cms";
 import { getSiteUrl } from "@/lib/site";
 
 type PackagePageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamic = "force-static";
+// Se regenera cada hora (y al momento cuando se publica algo en el panel).
+export const revalidate = 3600;
 
-export const generateStaticParams = () =>
-  packages.map((travelPackage) => ({
+export const generateStaticParams = async () =>
+  (await getPackages()).map((travelPackage) => ({
     slug: travelPackage.slug,
   }));
 
@@ -24,7 +21,7 @@ export const generateMetadata = async ({
   params,
 }: PackagePageProps): Promise<Metadata> => {
   const { slug } = await params;
-  const travelPackage = getPackageBySlug(slug);
+  const travelPackage = await getPackageBySlug(slug);
 
   if (!travelPackage) {
     return {};
@@ -64,7 +61,7 @@ export const generateMetadata = async ({
 
 export default async function PackagePage({ params }: PackagePageProps) {
   const { slug } = await params;
-  const travelPackage = getPackageBySlug(slug);
+  const travelPackage = await getPackageBySlug(slug);
 
   if (!travelPackage) {
     notFound();

@@ -11,9 +11,15 @@ import MissionVisionValues from "@/components/sections/MissionVisionValues";
 import Testimonials from "@/components/sections/Testimonials";
 import ContactForm from "@/components/sections/ContactForm";
 import { getSiteUrl, siteConfig } from "@/lib/site";
-import { isFeaturedPromotionActive } from "@/lib/travel-content";
+import PromotionsGrid from "@/components/sections/PromotionsGrid";
+import LatestPosts from "@/components/sections/LatestPosts";
+import { getActivePackages, getPosts, getTestimonials } from "@/lib/cms";
+import type { ContentPage } from "@/lib/travel-content";
 
-const jsonLd = {
+// Se regenera cada hora (y al momento cuando se publica algo en el panel).
+export const revalidate = 3600;
+
+const getJsonLd = (featured?: ContentPage) => ({
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "@id": getSiteUrl("#travel-agency"),
@@ -55,21 +61,29 @@ const jsonLd = {
       name: "Paquetes turísticos",
       description: "Vuelos, hoteles, excursiones, traslados y seguros de viajes.",
     },
-    ...(isFeaturedPromotionActive
+    ...(featured
       ? [
           {
             "@type": "Offer",
-            name: "Feria de las Flores en Medellín 2026",
-            description: "Viaje a Medellín del 7 al 11 de agosto 2026 con alojamiento, traslados y excursiones.",
-            price: "850",
-            priceCurrency: "USD",
+            name: featured.title,
+            description: featured.description,
+            url: getSiteUrl(`/paquetes/${featured.slug}`),
           },
         ]
       : []),
   ],
-};
+});
 
-export default function Home() {
+export default async function Home() {
+  const [activePackages, testimonials, posts] = await Promise.all([
+    getActivePackages(),
+    getTestimonials(),
+    getPosts(3),
+  ]);
+  const featured = activePackages.find((travelPackage) => travelPackage.featured);
+  const otherPromotions = activePackages.filter((travelPackage) => travelPackage !== featured);
+  const jsonLd = getJsonLd(featured);
+
   return (
     <main className="relative">
       <script
@@ -79,13 +93,15 @@ export default function Home() {
       <Header />
       <Hero />
       <BookingBar />
-      {isFeaturedPromotionActive ? <FeaturedPromotion /> : null}
+      {featured ? <FeaturedPromotion promo={featured} /> : null}
+      <PromotionsGrid promotions={otherPromotions} />
       <Benefits />
       <Destinations />
       <Experience />
       <MissionVisionValues />
       <Packages />
-      <Testimonials />
+      <Testimonials testimonials={testimonials} />
+      <LatestPosts posts={posts} />
       <ContactForm />
       <Footer />
     </main>

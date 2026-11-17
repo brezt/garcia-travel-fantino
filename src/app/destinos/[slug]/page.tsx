@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TravelContentPage from "@/components/seo/TravelContentPage";
-import {
-  destinations,
-  getContentJsonLd,
-  getDestinationBySlug,
-} from "@/lib/travel-content";
+import { getContentJsonLd } from "@/lib/travel-content";
+import { getDestinationBySlug, getDestinations } from "@/lib/cms";
 import { getSiteUrl } from "@/lib/site";
 
 type DestinationPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamic = "force-static";
+// Se regenera cada hora (y al momento cuando se publica algo en el panel).
+export const revalidate = 3600;
 
-export const generateStaticParams = () =>
-  destinations.map((destination) => ({
+export const generateStaticParams = async () =>
+  (await getDestinations()).map((destination) => ({
     slug: destination.slug,
   }));
 
@@ -23,7 +21,7 @@ export const generateMetadata = async ({
   params,
 }: DestinationPageProps): Promise<Metadata> => {
   const { slug } = await params;
-  const destination = getDestinationBySlug(slug);
+  const destination = await getDestinationBySlug(slug);
 
   if (!destination) {
     return {};
@@ -62,7 +60,7 @@ export const generateMetadata = async ({
 
 export default async function DestinationPage({ params }: DestinationPageProps) {
   const { slug } = await params;
-  const destination = getDestinationBySlug(slug);
+  const destination = await getDestinationBySlug(slug);
 
   if (!destination) {
     notFound();
