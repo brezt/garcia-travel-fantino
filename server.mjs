@@ -41,6 +41,16 @@ const getCacheControl = (filePath) => {
   return "public, max-age=300";
 };
 
+const isFile = async (filePath) => {
+  try {
+    return (await stat(filePath)).isFile();
+  } catch {
+    return false;
+  }
+};
+
+// Devuelve { filePath, status }. Las páginas exportadas viven como
+// /destinos/punta-cana.html, así que también se prueba la extensión .html.
 const resolveFile = async (requestPath) => {
   const cleanPath = decodeURIComponent(requestPath.split("?")[0] || "/");
   const normalized = path.normalize(cleanPath).replace(/^(\.\.[/\\])+/, "");
@@ -50,29 +60,34 @@ const resolveFile = async (requestPath) => {
     return null;
   }
 
-  try {
-    const fileStat = await stat(filePath);
-    if (fileStat.isDirectory()) {
-      return path.join(filePath, "index.html");
+  const candidates = [
+    filePath,
+    `${filePath.replace(/[/\\]$/, "")}.html`,
+    path.join(filePath, "index.html"),
+  ];
+
+  for (const candidate of candidates) {
+    if (await isFile(candidate)) {
+      return { filePath: candidate, status: 200 };
     }
-    return filePath;
-  } catch {
-    return path.join(outDir, "index.html");
   }
+
+  return { filePath: path.join(outDir, "404.html"), status: 404 };
 };
 
 createServer(async (req, res) => {
   try {
-    const filePath = await resolveFile(req.url || "/");
-    if (!filePath) {
+    const resolved = await resolveFile(req.url || "/");
+    if (!resolved) {
       res.writeHead(400);
       res.end("Bad request");
       return;
     }
 
+    const { filePath, status } = resolved;
     const body = await readFile(filePath);
     const contentType = contentTypes[path.extname(filePath)] || "application/octet-stream";
-    res.writeHead(200, {
+    res.writeHead(status, {
       "Cache-Control": getCacheControl(filePath),
       "Content-Type": contentType,
     });

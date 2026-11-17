@@ -147,7 +147,7 @@ const Hero = () => {
             RESERVAR AHORA
           </Button>
           <a href="#destinos">
-            <Button className="glass text-white hover:bg-white/20 rounded-full px-10 py-6 font-bold tracking-widest text-sm">
+            <Button className="bg-white/90 text-brand-navy backdrop-blur-md hover:bg-white rounded-full px-10 py-6 font-bold tracking-widest text-sm">
               VER DESTINOS
             </Button>
           </a>

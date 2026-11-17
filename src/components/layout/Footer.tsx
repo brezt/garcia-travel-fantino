@@ -37,10 +37,10 @@ const Footer = () => {
         <div className="flex-1 max-w-sm">
           <Link href="/" className="inline-flex items-center mb-6 rounded-2xl bg-white px-4 py-3 shadow-lg shadow-black/20">
             <Image
-              src={siteConfig.logoPath}
+              src="/images/logo-garcia-travel-fantino.webp"
               alt="Garcia Travel Fantino"
-              width={1024}
-              height={1024}
+              width={512}
+              height={512}
               className="w-[170px] md:w-[210px] h-auto object-contain drop-shadow-sm"
             />
           </Link>

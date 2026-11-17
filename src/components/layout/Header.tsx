@@ -51,10 +51,10 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center group relative z-50">
           <Image
-            src="/images/logo-garcia-travel-fantino.png"
+            src="/images/logo-garcia-travel-fantino.webp"
             alt="Garcia Travel Fantino"
-            width={1024}
-            height={1024}
+            width={512}
+            height={512}
             priority
             className={cn(
               "transition-all duration-500 drop-shadow-xl object-contain origin-left",
