@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Check, MapPin, MessageCircle } from "lucide-react";
+import { ArrowLeft, Check, FileDown, MapPin, MessageCircle } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { isExpired, type ContentPage } from "@/lib/travel-content";
 
@@ -83,10 +83,12 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
           <div className="space-y-8">
             <div className="rounded-[2rem] bg-white p-8 shadow-sm md:p-10">
               <div className="mb-8 flex flex-wrap gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full bg-brand-slate px-4 py-2 text-xs font-bold text-brand-navy">
-                  <MapPin size={15} className="text-brand-teal" />
-                  {page.location}
-                </span>
+                {page.location ? (
+                  <span className="inline-flex items-center gap-2 rounded-full bg-brand-slate px-4 py-2 text-xs font-bold text-brand-navy">
+                    <MapPin size={15} className="text-brand-teal" />
+                    {page.location}
+                  </span>
+                ) : null}
                 {page.duration ? (
                   <span className="rounded-full bg-brand-slate px-4 py-2 text-xs font-bold text-brand-navy">
                     {page.duration}
@@ -111,6 +113,7 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
               </div>
             </div>
 
+            {page.faq.length > 0 ? (
             <div className="rounded-[2rem] bg-white p-8 shadow-sm md:p-10">
               <h2 className="mb-6 font-montserrat text-2xl font-black uppercase text-brand-navy">
                 Preguntas frecuentes
@@ -128,6 +131,7 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
                 ))}
               </div>
             </div>
+            ) : null}
           </div>
 
           <aside className="h-max rounded-[2rem] bg-brand-navy p-8 text-white shadow-xl shadow-brand-navy/10 lg:sticky lg:top-8">
@@ -145,6 +149,26 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
                 </li>
               ))}
             </ul>
+            {page.documents && page.documents.length > 0 ? (
+              <div className="mb-8">
+                <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-cyan">
+                  Documentos
+                </p>
+                <ul className="space-y-2">
+                  {page.documents.map((document) => (
+                    <li key={document.url}>
+                      <a
+                        href={`${document.url}?dl=`}
+                        className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+                      >
+                        <FileDown className="h-5 w-5 shrink-0 text-brand-gold" />
+                        <span>{document.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
             <a
               href={whatsappUrl}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-center text-xs font-black uppercase tracking-widest text-brand-navy transition-colors hover:bg-brand-gold"
