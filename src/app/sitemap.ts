@@ -1,28 +1,40 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
-import { contentPages, isExpired } from "@/lib/travel-content";
+import { isExpired } from "@/lib/travel-content";
+import { getDestinations, getPackages, getPosts } from "@/lib/cms";
 
-export const dynamic = "force-static";
+export const revalidate = 60;
 
-const lastModified = new Date("2026-05-18");
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [destinations, packages, posts] = await Promise.all([
+    getDestinations(),
+    getPackages(),
+    getPosts(),
+  ]);
 
-export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: getSiteUrl(),
-      lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
-    ...contentPages.filter((page) => !isExpired(page)).map((page) => ({
-      url: getSiteUrl(
-        page.type === "package"
-          ? `/paquetes/${page.slug}`
-          : `/destinos/${page.slug}`
-      ),
-      lastModified,
+    ...[...destinations, ...packages]
+      .filter((page) => !isExpired(page))
+      .map((page) => ({
+        url: getSiteUrl(
+          page.type === "package" ? `/paquetes/${page.slug}` : `/destinos/${page.slug}`
+        ),
+        changeFrequency: "monthly" as const,
+        priority: page.type === "package" ? 0.9 : 0.85,
+      })),
+    ...(posts.length > 0
+      ? [{ url: getSiteUrl("/blog"), changeFrequency: "weekly" as const, priority: 0.7 }]
+      : []),
+    ...posts.map((post) => ({
+      url: getSiteUrl(`/blog/${post.slug}`),
+      lastModified: new Date(post.publishedAt),
       changeFrequency: "monthly" as const,
-      priority: page.type === "package" ? 0.9 : 0.85,
+      priority: 0.6,
     })),
   ];
 }

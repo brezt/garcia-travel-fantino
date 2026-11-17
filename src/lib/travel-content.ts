@@ -15,6 +15,14 @@ export type ContentPage = {
   price?: string;
   /** Último día de la promoción (AAAA-MM-DD). Después de esta fecha se oculta de la portada. */
   validUntil?: string;
+  /** Se muestra como promoción destacada en la portada. */
+  featured?: boolean;
+  /** Flyer horizontal de la promoción. */
+  promoImage?: string;
+  documents?: {
+    title: string;
+    url: string;
+  }[];
   highlights: string[];
   sections: {
     title: string;
@@ -178,6 +186,8 @@ export const packages: ContentPage[] = [
     duration: "07 al 11 de agosto 2026",
     price: "USD 850 p/p en DBL-TPL",
     validUntil: "2026-08-11",
+    featured: true,
+    promoImage: siteConfig.promoImagePath,
     highlights: [
       "Boleto aéreo con equipaje en bodega",
       "Hotel de lujo en El Poblado",
@@ -215,18 +225,10 @@ export const packages: ContentPage[] = [
 
 export const contentPages = [...destinations, ...packages];
 
-// El sitio es estático: la fecha se evalúa al compilar, así que una promoción
-// vencida desaparece en la siguiente publicación.
+// Las páginas se regeneran solas, así que una promoción vencida
+// desaparece de la portada al día siguiente de su fecha.
 export const isExpired = (page: ContentPage, now = new Date()) =>
   page.validUntil ? new Date(`${page.validUntil}T23:59:59-04:00`) < now : false;
-
-export const activePackages = packages.filter((travelPackage) => !isExpired(travelPackage));
-
-export const featuredPackageSlug = "feria-de-las-flores-medellin-2026";
-
-export const isFeaturedPromotionActive = activePackages.some(
-  (travelPackage) => travelPackage.slug === featuredPackageSlug
-);
 
 export const resolveContentImageUrl = (image: string) =>
   image.startsWith("http://") || image.startsWith("https://")
