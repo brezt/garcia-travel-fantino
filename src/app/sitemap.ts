@@ -3,7 +3,7 @@ import { getSiteUrl } from "@/lib/site";
 import { isExpired } from "@/lib/travel-content";
 import { getDestinations, getPackages, getPosts } from "@/lib/cms";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [destinations, packages, posts] = await Promise.all([

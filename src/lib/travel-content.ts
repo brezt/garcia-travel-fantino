@@ -225,8 +225,8 @@ export const packages: ContentPage[] = [
 
 export const contentPages = [...destinations, ...packages];
 
-// Las páginas se regeneran cada hora, así que una promoción vencida
-// desaparece sola como mucho una hora después de que termine su fecha.
+// Las páginas se regeneran solas, así que una promoción vencida
+// desaparece de la portada al día siguiente de su fecha.
 export const isExpired = (page: ContentPage, now = new Date()) =>
   page.validUntil ? new Date(`${page.validUntil}T23:59:59-04:00`) < now : false;
 

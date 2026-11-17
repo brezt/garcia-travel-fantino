@@ -16,8 +16,8 @@ import LatestPosts from "@/components/sections/LatestPosts";
 import { getActivePackages, getPosts, getTestimonials } from "@/lib/cms";
 import type { ContentPage } from "@/lib/travel-content";
 
-// Se regenera cada hora (y al momento cuando se publica algo en el panel).
-export const revalidate = 3600;
+// Se regenera como mucho cada minuto (y al momento con el webhook del panel).
+export const revalidate = 60;
 
 const getJsonLd = (featured?: ContentPage) => ({
   "@context": "https://schema.org",

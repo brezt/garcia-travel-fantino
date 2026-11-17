@@ -15,7 +15,7 @@ type PostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export const generateStaticParams = async () =>
   (await getPosts()).map((post) => ({ slug: post.slug }));

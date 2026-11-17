@@ -5,7 +5,7 @@ import PostCard from "@/components/blog/PostCard";
 import { getPosts } from "@/lib/cms";
 import { getSiteUrl } from "@/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog de viajes",

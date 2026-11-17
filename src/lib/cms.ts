@@ -16,7 +16,7 @@ import {
  */
 
 /** Segundos que una página se guarda antes de volver a preguntar al panel. */
-export const CMS_REVALIDATE_SECONDS = 3600;
+export const CMS_REVALIDATE_SECONDS = 60;
 
 const cmsFetch = async <T>(query: string, params: Record<string, string> = {}) => {
   try {
