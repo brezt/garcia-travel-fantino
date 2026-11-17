@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { openWhatsApp } from "@/lib/whatsapp";
 
 const Destinations = () => {
@@ -22,7 +22,7 @@ const Destinations = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 md:h-[600px]">
           <motion.div
-            initial={false}
+            data-reveal initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group min-h-[250px]"
@@ -55,7 +55,7 @@ const Destinations = () => {
           </motion.div>
 
           <motion.div
-            initial={false}
+            data-reveal initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
@@ -86,7 +86,7 @@ const Destinations = () => {
           </motion.div>
 
           <motion.div
-            initial={false}
+            data-reveal initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
@@ -117,7 +117,7 @@ const Destinations = () => {
           </motion.div>
 
           <motion.div
-            initial={false}
+            data-reveal initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
@@ -152,7 +152,7 @@ const Destinations = () => {
           </motion.div>
 
           <motion.div
-            initial={false}
+            data-reveal initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}

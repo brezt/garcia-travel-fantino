@@ -16,7 +16,7 @@ import {
   Sprout,
   Van,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { openWhatsApp } from "@/lib/whatsapp";
 
 const includes = [
@@ -66,7 +66,7 @@ const FeaturedPromotion = () => {
         </div>
 
         <motion.div
-          initial={false}
+          data-reveal initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="overflow-hidden rounded-[2rem] bg-white shadow-2xl"

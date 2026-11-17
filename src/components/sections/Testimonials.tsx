@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Star } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const testimonials = [
@@ -20,7 +20,7 @@ const Testimonials = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {testimonials.map((testimonial, index) => (
-            <motion.div key={index} initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={cn("rounded-3xl p-8 flex flex-col shadow-xl transition-transform hover:-translate-y-2", testimonial.highlight ? "bg-brand-teal text-white md:scale-110 z-10 py-12" : "bg-white text-brand-navy")}>
+            <motion.div key={index} data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={cn("rounded-3xl p-8 flex flex-col shadow-xl transition-transform hover:-translate-y-2", testimonial.highlight ? "bg-brand-teal text-white md:scale-110 z-10 py-12" : "bg-white text-brand-navy")}>
               <div className="flex gap-1 mb-6">{[1, 2, 3, 4, 5].map((star) => (<Star key={star} size={16} className="fill-current text-brand-gold" />))}</div>
               <p className={cn("text-sm mb-8 font-inter italic leading-relaxed flex-1", testimonial.highlight ? "text-white/90 font-medium" : "text-brand-navy/70")}>&ldquo;{testimonial.content}&rdquo;</p>
               <div className="flex items-center gap-4">

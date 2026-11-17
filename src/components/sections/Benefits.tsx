@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Headphones, ShieldCheck, Star, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const benefits = [
   {
@@ -40,7 +40,7 @@ const Benefits = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              initial={false}
+              data-reveal initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}

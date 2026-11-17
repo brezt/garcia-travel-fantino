@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { MapPin, Sun } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { openWhatsApp } from "@/lib/whatsapp";
 
 const Packages = () => {
@@ -16,7 +16,7 @@ const Packages = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-[2rem] border border-brand-slate overflow-hidden flex flex-col sm:flex-row shadow-sm hover:shadow-xl transition-all h-[350px]">
+          <motion.div data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-[2rem] border border-brand-slate overflow-hidden flex flex-col sm:flex-row shadow-sm hover:shadow-xl transition-all h-[350px]">
             <div className="w-full sm:w-[45%] relative h-48 sm:h-full">
               <span className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider z-10 border border-white/30">Top Ventas</span>
               <Image src="https://images.unsplash.com/photo-1543731068-7e0f5beff43a?q=80&w=1974&auto=format&fit=crop" alt="Escapada romántica" fill sizes="(min-width: 768px) 23vw, 100vw" className="object-cover" />
@@ -30,7 +30,7 @@ const Packages = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="bg-white rounded-[2rem] border border-brand-slate overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all h-[350px]">
+          <motion.div data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="bg-white rounded-[2rem] border border-brand-slate overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all h-[350px]">
             <div className="p-8 pb-4">
               <div className="w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center mb-4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
               <h3 className="text-2xl font-black text-brand-navy font-montserrat uppercase leading-tight mb-2">Aventura Extrema</h3>
@@ -42,7 +42,7 @@ const Packages = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="bg-brand-slate/50 rounded-[2rem] overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all h-[350px]">
+          <motion.div data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="bg-brand-slate/50 rounded-[2rem] overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all h-[350px]">
             <div className="p-8 pb-4">
               <h3 className="text-2xl font-black text-brand-navy font-montserrat uppercase leading-tight mb-2">Felicidad Familiar</h3>
               <p className="text-xs text-brand-navy/60 mb-4 max-w-sm">Diversión para niños y descanso total para los padres.</p>
@@ -53,7 +53,7 @@ const Packages = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="bg-[#1A1A1A] rounded-[2rem] overflow-hidden flex flex-col sm:flex-row shadow-sm hover:shadow-xl transition-all h-[350px]">
+          <motion.div data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="bg-[#1A1A1A] rounded-[2rem] overflow-hidden flex flex-col sm:flex-row shadow-sm hover:shadow-xl transition-all h-[350px]">
             <div className="p-8 flex flex-col justify-center flex-1 order-2 sm:order-1">
               <h3 className="text-2xl font-black text-white font-montserrat uppercase leading-tight mb-1">Mundo</h3>
               <h3 className="text-2xl font-black text-white font-montserrat uppercase leading-tight mb-4">Global</h3>

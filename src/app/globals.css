@@ -12,17 +12,17 @@
   --color-brand-slate: #F8FAFC;
   --color-brand-teal: #00696B;
 
-  --font-montserrat: "Segoe UI", Arial, sans-serif;
-  --font-inter: "Segoe UI", Arial, sans-serif;
-  --font-playfair: Georgia, "Times New Roman", serif;
+  --font-montserrat: "Montserrat Variable", "Segoe UI", Arial, sans-serif;
+  --font-inter: "Inter Variable", "Segoe UI", Arial, sans-serif;
+  --font-playfair: "Playfair Display Variable", Georgia, "Times New Roman", serif;
 }
 
 :root {
   --background: #f7f9fb;
   --foreground: #0F172A;
-  --font-montserrat: "Segoe UI", Arial, sans-serif;
-  --font-inter: "Segoe UI", Arial, sans-serif;
-  --font-playfair: Georgia, "Times New Roman", serif;
+  --font-montserrat: "Montserrat Variable", "Segoe UI", Arial, sans-serif;
+  --font-inter: "Inter Variable", "Segoe UI", Arial, sans-serif;
+  --font-playfair: "Playfair Display Variable", Georgia, "Times New Roman", serif;
 }
 
 html {
