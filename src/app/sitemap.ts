@@ -14,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...["/privacidad", "/terminos"].map((path) => ({
+      url: getSiteUrl(path),
+      lastModified,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })),
     ...contentPages.filter((page) => !isExpired(page)).map((page) => ({
       url: getSiteUrl(
         page.type === "package"
