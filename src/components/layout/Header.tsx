@@ -31,12 +31,12 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: "Inicio", href: "#" },
-    { name: "Destinos", href: "#destinos" },
-    { name: "Paquetes", href: "#paquetes" },
-    { name: "Experiencias", href: "#experiencias" },
-    { name: "Nosotros", href: "#nosotros" },
-    { name: "Contacto", href: "#contacto" },
+    { name: "Inicio", href: "/" },
+    { name: "Destinos", href: "/#destinos" },
+    { name: "Paquetes", href: "/#paquetes" },
+    { name: "Experiencias", href: "/#experiencias" },
+    { name: "Nosotros", href: "/#nosotros" },
+    { name: "Contacto", href: "/#contacto" },
   ];
 
   return (
@@ -85,7 +85,7 @@ const Header = () => {
         {/* CTA Button */}
         <div className="hidden lg:block">
           <Button 
-            onClick={() => openWhatsApp("Hola Garcia Travel, me gustaria cotizar un viaje.")}
+            onClick={() => openWhatsApp("Hola Garcia Travel, me gustaría cotizar un viaje.")}
             className="bg-brand-teal text-white hover:bg-brand-teal/90 rounded-full px-8 font-bold tracking-widest text-xs h-10 shadow-lg shadow-brand-teal/20"
           >
             <PlugConnectedIcon size={16} className="mr-2" />
@@ -123,7 +123,7 @@ const Header = () => {
           </Link>
         ))}
         <Button 
-          onClick={() => openWhatsApp("Hola Garcia Travel, me gustaria cotizar un viaje.")}
+          onClick={() => openWhatsApp("Hola Garcia Travel, me gustaría cotizar un viaje.")}
           className="mt-4 w-full bg-brand-teal text-white rounded-full py-4 font-bold tracking-widest"
         >
           <PlugConnectedIcon size={18} className="mr-2" />

@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const testimonials = [
-  { name: "Maria Rodriguez", role: "Viaje a Punta Cana", content: "Fantastica experiencia. El equipo de Garcia Travel se encargo de todo. Definitivamente volveremos a viajar con ellos!", highlight: false },
-  { name: "David Suriel", role: "Viaje a Europa", content: "Nuestra luna de miel fue espectacular gracias a Garcia Travel. Su atencion a cada detalle marco una gran diferencia.", highlight: true },
-  { name: "Laura Jimenez", role: "Viaje Familiar", content: "Los ninos disfrutaron muchisimo. Encontraron el resort perfecto para nosotros. 100% recomendados!", highlight: false },
+  { name: "María Rodríguez", role: "Viaje a Punta Cana", content: "Fantástica experiencia. El equipo de Garcia Travel se encargó de todo. ¡Definitivamente volveremos a viajar con ellos!", highlight: false },
+  { name: "David Suriel", role: "Viaje a Europa", content: "Nuestra luna de miel fue espectacular gracias a Garcia Travel. Su atención a cada detalle marcó una gran diferencia.", highlight: true },
+  { name: "Laura Jiménez", role: "Viaje Familiar", content: "Los niños disfrutaron muchísimo. Encontraron el resort perfecto para nosotros. ¡100% recomendados!", highlight: false },
 ];
 
 const Testimonials = () => {

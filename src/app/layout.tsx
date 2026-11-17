@@ -3,7 +3,7 @@ import Script from "next/script";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const title = "Garcia Travel Fantino | Agencia de viajes en Fantino";
+const title = "Garcia Travel Fantino | Agencia de viajes en Fantino, RD";
 const description = siteConfig.description;
 
 export const metadata: Metadata = {
@@ -24,6 +24,8 @@ export const metadata: Metadata = {
     "viajes a Bayahibe",
     "viajes a Samaná",
     "cruceros República Dominicana",
+    "paquetes a Punta Cana desde República Dominicana",
+    "paquetes turísticos en Fantino",
     "Feria de las Flores Medellín 2026",
   ],
   applicationName: siteConfig.name,

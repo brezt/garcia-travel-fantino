@@ -9,8 +9,8 @@ const benefits = [
   {
     icon: <Headphones className="w-8 h-8 text-brand-teal" />,
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
-    title: "ASESORIA LOCAL",
-    description: "Expertos dominicanos guiandote en cada paso para asegurar el viaje de tus suenos.",
+    title: "ASESORÍA LOCAL",
+    description: "Expertos dominicanos guiándote en cada paso para asegurar el viaje de tus sueños.",
   },
   {
     icon: <ShieldCheck className="w-8 h-8 text-brand-teal" />,
@@ -22,7 +22,7 @@ const benefits = [
     icon: <Star className="w-8 h-8 text-brand-teal" />,
     image: "https://images.unsplash.com/photo-1543731068-7e0f5beff43a?q=80&w=1200&auto=format&fit=crop",
     title: "EXPERIENCIA VIP",
-    description: "Disenamos itinerarios exclusivos para que disfrutes sin preocupaciones.",
+    description: "Diseñamos itinerarios exclusivos para que disfrutes sin preocupaciones.",
   },
   {
     icon: <Clock className="w-8 h-8 text-brand-teal" />,

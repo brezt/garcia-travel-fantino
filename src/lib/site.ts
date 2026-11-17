@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Garcia Travel Fantino",
   legalName: "Garcia Travel Fantino",
   description:
-    "Agencia de viajes en Fantino, República Dominicana. Cotiza vuelos, hoteles, excursiones, cruceros y paquetes turísticos nacionales e internacionales con asesoría personalizada.",
+    "Agencia de viajes en Fantino, República Dominicana. Cotiza vuelos, hoteles, excursiones, cruceros y paquetes turísticos a Punta Cana, Medellín y destinos internacionales con asesoría personalizada.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://garciatravelfantino.com",
   phone: "+1 829 884 6811",
   phoneHref: "+18298846811",

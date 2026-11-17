@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import React from "react";
+import Link from "next/link";
 import {
   CalendarDays,
   Hotel,
@@ -30,7 +31,7 @@ const includes = [
 const FeaturedPromotion = () => {
   const handlePromoClick = () => {
     openWhatsApp(
-      "Hola Garcia Travel, me interesa la promoción Feria de las Flores en Medellín 2026 del 07 al 11 de agosto. ¿Podrían enviarme más detalles y disponibilidad?",
+      "Hola Garcia Travel, quiero asegurar mi cupo para la Feria de las Flores en Medellín 2026 del 07 al 11 de agosto. Me interesa el paquete de USD 850 p/p en DBL-TPL con boleto aéreo, hotel, traslados, excursiones, Yate Majestic y seguro de viajes. ¿Podrían confirmarme disponibilidad y forma de pago?",
     );
   };
 
@@ -46,13 +47,22 @@ const FeaturedPromotion = () => {
               Feria de las Flores en Medellín 2026
             </h2>
           </div>
-          <button
-            onClick={handlePromoClick}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-teal px-7 py-4 text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-brand-teal/20 transition-colors hover:bg-brand-navy"
-          >
-            <MessageCircle size={18} />
-            Asegurar mi cupo
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/paquetes/feria-de-las-flores-medellin-2026"
+              className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 text-xs font-bold uppercase tracking-widest text-brand-navy shadow-sm transition-colors hover:bg-brand-cyan"
+            >
+              Ver detalles
+            </Link>
+            <button
+              onClick={handlePromoClick}
+              aria-label="Asegurar cupo por WhatsApp para la Feria de las Flores en Medellín 2026"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-teal px-7 py-4 text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-brand-teal/20 transition-colors hover:bg-brand-navy"
+            >
+              <MessageCircle size={18} />
+              Asegurar mi cupo
+            </button>
+          </div>
         </div>
 
         <motion.div
