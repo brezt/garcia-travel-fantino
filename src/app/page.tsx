@@ -11,6 +11,7 @@ import MissionVisionValues from "@/components/sections/MissionVisionValues";
 import Testimonials from "@/components/sections/Testimonials";
 import ContactForm from "@/components/sections/ContactForm";
 import { getSiteUrl, siteConfig } from "@/lib/site";
+import { isFeaturedPromotionActive } from "@/lib/travel-content";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -21,7 +22,7 @@ const jsonLd = {
   description: siteConfig.description,
   url: getSiteUrl(),
   logo: getSiteUrl(siteConfig.logoPath),
-  image: getSiteUrl(siteConfig.promoImagePath),
+  image: getSiteUrl(siteConfig.shareImagePath),
   telephone: siteConfig.phone,
   email: siteConfig.email,
   address: {
@@ -54,13 +55,17 @@ const jsonLd = {
       name: "Paquetes turísticos",
       description: "Vuelos, hoteles, excursiones, traslados y seguros de viajes.",
     },
-    {
-      "@type": "Offer",
-      name: "Feria de las Flores en Medellín 2026",
-      description: "Viaje a Medellín del 7 al 11 de agosto 2026 con alojamiento, traslados y excursiones.",
-      price: "850",
-      priceCurrency: "USD",
-    },
+    ...(isFeaturedPromotionActive
+      ? [
+          {
+            "@type": "Offer",
+            name: "Feria de las Flores en Medellín 2026",
+            description: "Viaje a Medellín del 7 al 11 de agosto 2026 con alojamiento, traslados y excursiones.",
+            price: "850",
+            priceCurrency: "USD",
+          },
+        ]
+      : []),
   ],
 };
 
@@ -74,7 +79,7 @@ export default function Home() {
       <Header />
       <Hero />
       <BookingBar />
-      <FeaturedPromotion />
+      {isFeaturedPromotionActive ? <FeaturedPromotion /> : null}
       <Benefits />
       <Destinations />
       <Experience />

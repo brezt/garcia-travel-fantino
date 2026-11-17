@@ -4,6 +4,7 @@ import TravelContentPage from "@/components/seo/TravelContentPage";
 import {
   getContentJsonLd,
   getPackageBySlug,
+  isExpired,
   packages,
 } from "@/lib/travel-content";
 import { getSiteUrl } from "@/lib/site";
@@ -39,6 +40,7 @@ export const generateMetadata = async ({
     alternates: {
       canonical: url,
     },
+    ...(isExpired(travelPackage) ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: travelPackage.metaTitle,
       description: travelPackage.description,

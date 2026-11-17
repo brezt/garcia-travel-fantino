@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
-import { contentPages } from "@/lib/travel-content";
+import { contentPages, isExpired } from "@/lib/travel-content";
 
 export const dynamic = "force-static";
 
@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
-    ...contentPages.map((page) => ({
+    ...contentPages.filter((page) => !isExpired(page)).map((page) => ({
       url: getSiteUrl(
         page.type === "package"
           ? `/paquetes/${page.slug}`

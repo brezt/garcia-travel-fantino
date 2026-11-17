@@ -2,14 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Check, MapPin, MessageCircle } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
-import type { ContentPage } from "@/lib/travel-content";
+import { isExpired, type ContentPage } from "@/lib/travel-content";
 
 type TravelContentPageProps = {
   page: ContentPage;
 };
 
 const TravelContentPage = ({ page }: TravelContentPageProps) => {
-  const whatsappUrl = getWhatsAppUrl(page.whatsappMessage);
+  const expired = isExpired(page);
+  const whatsappUrl = getWhatsAppUrl(
+    expired
+      ? `Hola Garcia Travel, vi la promoción "${page.shortTitle}" en la web. ¿Tienen próximas salidas o promociones parecidas?`
+      : page.whatsappMessage
+  );
 
   return (
     <main className="min-h-screen bg-brand-slate text-brand-navy">
@@ -60,6 +65,18 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
           </div>
         </div>
       </section>
+
+      {expired ? (
+        <div className="px-6 pt-10">
+          <p
+            role="status"
+            className="mx-auto max-w-7xl rounded-2xl border border-brand-gold/40 bg-brand-gold/15 px-6 py-4 text-sm font-semibold text-brand-navy"
+          >
+            Esta promoción ya finalizó. Escríbenos por WhatsApp para conocer las próximas salidas y
+            promociones disponibles.
+          </p>
+        </div>
+      ) : null}
 
       <section id="detalles" className="px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_360px]">
