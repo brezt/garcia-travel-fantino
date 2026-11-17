@@ -13,7 +13,9 @@ import ContactForm from "@/components/sections/ContactForm";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 import PromotionsGrid from "@/components/sections/PromotionsGrid";
 import LatestPosts from "@/components/sections/LatestPosts";
+import InstagramFeed from "@/components/sections/InstagramFeed";
 import { getActivePackages, getPosts, getTestimonials } from "@/lib/cms";
+import { getInstagramFeed } from "@/lib/instagram";
 import type { ContentPage } from "@/lib/travel-content";
 
 // Se regenera como mucho cada minuto (y al momento con el webhook del panel).
@@ -75,10 +77,11 @@ const getJsonLd = (featured?: ContentPage) => ({
 });
 
 export default async function Home() {
-  const [activePackages, testimonials, posts] = await Promise.all([
+  const [activePackages, testimonials, posts, instagram] = await Promise.all([
     getActivePackages(),
     getTestimonials(),
     getPosts(3),
+    getInstagramFeed(),
   ]);
   const featured = activePackages.find((travelPackage) => travelPackage.featured);
   const otherPromotions = activePackages.filter((travelPackage) => travelPackage !== featured);
@@ -102,6 +105,9 @@ export default async function Home() {
       <Packages />
       <Testimonials testimonials={testimonials} />
       <LatestPosts posts={posts} />
+      {instagram && (instagram.posts.length > 0 || instagram.stories.length > 0) ? (
+        <InstagramFeed feed={instagram} profileUrl={siteConfig.instagram} />
+      ) : null}
       <ContactForm />
       <Footer />
     </main>

@@ -1,127 +1,72 @@
-# Configurar Carrusel de Instagram
+# Conectar Instagram a la web
 
-Esta guia explica como conseguir los datos necesarios para mostrar las ultimas 10 publicaciones reales de Instagram en la web.
+La portada muestra los últimos posts de Instagram de la agencia y las historias
+activas (las de las últimas 24 horas). La sección queda oculta hasta que se
+conecta la cuenta. Se hace una sola vez y lleva unos 15 minutos.
 
-## Variables Necesarias
+Hace falta tener a mano el usuario y la contraseña del Instagram de la agencia.
 
-La web necesita estas dos variables en un archivo `.env.local` en la raiz del proyecto:
+## 1. Pasar la cuenta a profesional
 
-```env
-INSTAGRAM_USER_ID=17841400000000000
-INSTAGRAM_ACCESS_TOKEN=TU_TOKEN_AQUI
-```
+1. En la app de Instagram, entra al perfil de la agencia.
+2. Menú ☰ → **Configuración y privacidad** → **Tipo de cuenta y herramientas**.
+3. Si dice "Cambiar a cuenta profesional", púlsalo y elige **Empresa**.
+   Es gratis y no cambia nada de lo que ya está publicado.
 
-## 1. Preparar Instagram
+## 2. Crear la app en Meta
 
-1. Abre Instagram.
-2. Ve a `Configuracion y privacidad`.
-3. Cambia la cuenta a `Profesional`, si no lo esta.
-4. Elige `Empresa` o `Creador`.
-5. Conecta esa cuenta de Instagram con la pagina de Facebook de Garcia Travel Fantino.
+1. Entra en <https://developers.facebook.com/> e inicia sesión con Facebook
+   (puede ser tu Facebook personal). Si es la primera vez, acepta registrarte
+   como desarrollador.
+2. **Mis apps** → **Crear app**.
+3. Nombre: `Garcia Travel Web`. Correo de contacto: el tuyo.
+4. En "Caso de uso" elige **Administrar mensajes y contenido en Instagram**
+   (en inglés: *Manage messaging & content on Instagram*).
+5. Si pregunta por un portafolio comercial, elige "No conectar ahora".
+6. Termina con **Crear app**.
 
-## 2. Crear App en Meta
+## 3. Generar el token
 
-1. Entra a [Meta for Developers](https://developers.facebook.com/).
-2. Inicia sesion con la cuenta que administra Facebook e Instagram.
-3. Ve a `My Apps`.
-4. Haz clic en `Create App`.
-5. Elige tipo de app: normalmente `Business`.
-6. Ponle un nombre, por ejemplo: `Garcia Travel Website`.
-7. Crea la app.
+1. Dentro de la app, en el menú de la izquierda: **Instagram** →
+   **Configuración de la API con inicio de sesión de Instagram**
+   (*API setup with Instagram login*).
+2. En el paso "Generar tokens de acceso", pulsa **Agregar cuenta** y entra con
+   el usuario y la contraseña del Instagram de la agencia.
+3. Junto a la cuenta aparece **Generar token**. Púlsalo, acepta los permisos y
+   copia el token (un texto largo que empieza por `IG`).
 
-## 3. Abrir Graph API Explorer
+Ese token dura 60 días. La web lo renueva sola cada semana, así que no hay que
+volver a hacer esto salvo que se cambie la contraseña de Instagram o se quite el
+permiso a la app.
 
-1. Entra a [Graph API Explorer](https://developers.facebook.com/tools/explorer/).
-2. Arriba, selecciona tu app.
-3. En permisos agrega:
+> No envíes el token por chat ni por correo. Pégalo solo en Hostinger.
 
-```text
-pages_show_list
-pages_read_engagement
-instagram_basic
-```
+## 4. Guardarlo en Hostinger
 
-4. Haz clic en `Generate Access Token`.
-5. Acepta los permisos con la cuenta administradora.
+1. hPanel → **Sitios web** → `garciatravelfantino.com` → **Node.js** (o
+   "Implementaciones") → **Variables de entorno**.
+2. Agrega una variable:
+   - Nombre: `INSTAGRAM_ACCESS_TOKEN`
+   - Valor: el token que copiaste.
+3. Guarda y pulsa **Volver a implementar** (Redeploy).
 
-## 4. Buscar la Pagina de Facebook
+En unos minutos aparece la sección "Viaja con nosotros en Instagram" en la
+portada. Los posts nuevos salen solos en unos 10 minutos.
 
-En Graph API Explorer ejecuta:
+## Si algo falla
 
-```text
-/me/accounts
-```
+- **No aparece la sección:** revisa que la variable se llame exactamente
+  `INSTAGRAM_ACCESS_TOKEN` y que se volvió a implementar.
+- **Salen los posts pero no las historias:** las historias solo se muestran
+  mientras están activas (24 horas). Si hay una activa y no sale, avisa.
+- **Dejó de funcionar después de cambiar la contraseña de Instagram:** genera
+  un token nuevo (paso 3) y reemplázalo en Hostinger (paso 4).
 
-Busca la pagina `Garcia Travel Fantino`.
+## Para desarrolladores
 
-Copia el `id` de esa pagina. Ese sera tu `PAGE_ID`.
-
-## 5. Buscar el Instagram User ID
-
-Ejecuta:
-
-```text
-/{PAGE_ID}?fields=instagram_business_account
-```
-
-Ejemplo:
-
-```text
-1234567890?fields=instagram_business_account
-```
-
-La respuesta debe verse similar a esto:
-
-```json
-{
-  "instagram_business_account": {
-    "id": "17841400000000000"
-  },
-  "id": "1234567890"
-}
-```
-
-El `id` dentro de `instagram_business_account` es tu:
-
-```env
-INSTAGRAM_USER_ID=17841400000000000
-```
-
-## 6. Probar Publicaciones
-
-Ejecuta:
-
-```text
-/{INSTAGRAM_USER_ID}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=10
-```
-
-Si ves publicaciones en la respuesta, la conexion funciona.
-
-## 7. Copiar el Token
-
-El token que aparece en Graph API Explorer es tu:
-
-```env
-INSTAGRAM_ACCESS_TOKEN=TU_TOKEN_AQUI
-```
-
-## 8. Crear el Archivo `.env.local`
-
-En la raiz del proyecto, crea o edita `.env.local`:
-
-```env
-INSTAGRAM_USER_ID=17841400000000000
-INSTAGRAM_ACCESS_TOKEN=TU_TOKEN_AQUI
-```
-
-Despues reinicia la app:
-
-```bash
-npm run dev
-```
-
-## Nota Importante
-
-El token generado en Graph API Explorer suele ser temporal.
-
-Para produccion, conviene convertirlo en un token de larga duracion desde las herramientas de Meta antes de publicar la web.
+- Código: `src/lib/instagram.ts` (API de Instagram con inicio de sesión de
+  Instagram, `graph.instagram.com`) y `src/components/sections/InstagramFeed.tsx`.
+- El token renovado se guarda en `~/.garcia-travel/instagram-token.json` (se puede
+  cambiar con `INSTAGRAM_TOKEN_FILE`). Si se cambia la variable de Hostinger, la
+  web usa el token nuevo.
+- El feed se pide como mucho cada 10 minutos.
