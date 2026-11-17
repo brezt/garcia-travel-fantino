@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { openWhatsApp } from "@/lib/whatsapp";
-import { Compass, Luggage, MapPinned, Palmtree, Plane, ShipWheel } from "lucide-react";
-import { motion } from "framer-motion";
+import { MapPinned, Palmtree, Plane } from "lucide-react";
+import { motion } from "motion/react";
 import PlugConnectedIcon from "@/components/ui/plug-connected-icon";
 
 const floatingIcons = [
@@ -16,22 +16,6 @@ const floatingIcons = [
     size: 82,
     duration: 4,
     delay: 0,
-  },
-  {
-    Icon: Compass,
-    className: "right-16 top-20 text-white/35",
-    iconClassName: "rotate-12",
-    size: 58,
-    duration: 5,
-    delay: 0.4,
-  },
-  {
-    Icon: Luggage,
-    className: "left-20 bottom-28 text-white/35",
-    iconClassName: "-rotate-6",
-    size: 54,
-    duration: 4.8,
-    delay: 0.8,
   },
   {
     Icon: MapPinned,
@@ -48,14 +32,6 @@ const floatingIcons = [
     size: 50,
     duration: 4.6,
     delay: 1,
-  },
-  {
-    Icon: ShipWheel,
-    className: "right-[18%] top-[42%] text-white/25",
-    iconClassName: "rotate-12",
-    size: 48,
-    duration: 5.8,
-    delay: 0.6,
   },
 ];
 
@@ -171,7 +147,7 @@ const Hero = () => {
             RESERVAR AHORA
           </Button>
           <a href="#destinos">
-            <Button className="glass text-white hover:bg-white/20 rounded-full px-10 py-6 font-bold tracking-widest text-sm">
+            <Button className="bg-white/90 text-brand-navy backdrop-blur-md hover:bg-white rounded-full px-10 py-6 font-bold tracking-widest text-sm">
               VER DESTINOS
             </Button>
           </a>

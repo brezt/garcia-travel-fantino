@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { getSiteUrl, siteConfig } from "@/lib/site";
+import MotionProvider from "@/components/providers/MotionProvider";
+import "@fontsource-variable/montserrat";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/playfair-display/wght-italic.css";
 import "./globals.css";
 
-const title = "Garcia Travel Fantino | Agencia de viajes en Fantino";
+const title = "Garcia Travel Fantino | Agencia de viajes en Fantino, RD";
 const description = siteConfig.description;
 
 export const metadata: Metadata = {
@@ -24,7 +28,8 @@ export const metadata: Metadata = {
     "viajes a Bayahibe",
     "viajes a Samaná",
     "cruceros República Dominicana",
-    "Feria de las Flores Medellín 2026",
+    "paquetes a Punta Cana desde República Dominicana",
+    "paquetes turísticos en Fantino",
   ],
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
@@ -53,10 +58,10 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: siteConfig.promoImagePath,
-        width: 1672,
-        height: 941,
-        alt: "Promoción Feria de las Flores en Medellín 2026 de Garcia Travel Fantino",
+        url: siteConfig.shareImagePath,
+        width: 1024,
+        height: 571,
+        alt: "Playa tropical, viajes con Garcia Travel Fantino",
       },
       {
         url: siteConfig.logoPath,
@@ -70,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: [siteConfig.promoImagePath],
+    images: [siteConfig.shareImagePath],
   },
   category: "travel",
   icons: {
@@ -90,7 +95,11 @@ export default function RootLayout({
         suppressHydrationWarning
         className="font-inter antialiased min-h-full flex flex-col bg-brand-slate text-brand-navy"
       >
-        {children}
+        <noscript>
+          {/* Sin JavaScript las animaciones de entrada no se ejecutan: mostrar el contenido igual. */}
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        <MotionProvider>{children}</MotionProvider>
       </body>
       <Script id="extension-attribute-cleanup">
         {`

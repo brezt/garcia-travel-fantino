@@ -37,15 +37,15 @@ const Footer = () => {
         <div className="flex-1 max-w-sm">
           <Link href="/" className="inline-flex items-center mb-6 rounded-2xl bg-white px-4 py-3 shadow-lg shadow-black/20">
             <Image
-              src={siteConfig.logoPath}
+              src="/images/logo-garcia-travel-fantino.webp"
               alt="Garcia Travel Fantino"
-              width={1024}
-              height={1024}
+              width={512}
+              height={512}
               className="w-[170px] md:w-[210px] h-auto object-contain drop-shadow-sm"
             />
           </Link>
           <p className="text-white/50 text-xs leading-relaxed mb-8">
-            Ofrecemos experiencias de viaje unicas alrededor del mundo con el mejor servicio.
+            Ofrecemos experiencias de viaje únicas alrededor del mundo con el mejor servicio.
           </p>
           <div className="flex gap-4">
             {socialLinks.map(({ href, label, Icon }) => (
@@ -73,7 +73,7 @@ const Footer = () => {
           <div>
             <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Legales</h4>
             <ul className="space-y-4 text-xs text-white/70">
-              <li><Link href="#" className="hover:text-white transition-colors">Terminos</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Términos</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Privacidad</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Ayuda</Link></li>
             </ul>
@@ -86,7 +86,7 @@ const Footer = () => {
             <a
               href={mapsUrl}
               className="group block text-left"
-              aria-label="Abrir ubicacion de Garcia Travel Fantino en Google Maps"
+              aria-label="Abrir ubicación de Garcia Travel Fantino en Google Maps"
             >
               <div className="relative w-full h-32 overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-lg shadow-black/20">
                 <iframe
@@ -98,7 +98,7 @@ const Footer = () => {
                 />
               </div>
               <span className="mt-3 block text-xs text-white/70 group-hover:text-white transition-colors">
-                Ver ubicacion en Google Maps
+                Ver ubicación en Google Maps
               </span>
             </a>
           </div>

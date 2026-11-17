@@ -31,12 +31,12 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: "Inicio", href: "#" },
-    { name: "Destinos", href: "#destinos" },
-    { name: "Paquetes", href: "#paquetes" },
-    { name: "Experiencias", href: "#experiencias" },
-    { name: "Nosotros", href: "#nosotros" },
-    { name: "Contacto", href: "#contacto" },
+    { name: "Inicio", href: "/" },
+    { name: "Destinos", href: "/#destinos" },
+    { name: "Paquetes", href: "/#paquetes" },
+    { name: "Experiencias", href: "/#experiencias" },
+    { name: "Nosotros", href: "/#nosotros" },
+    { name: "Contacto", href: "/#contacto" },
   ];
 
   return (
@@ -51,10 +51,10 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center group relative z-50">
           <Image
-            src="/images/logo-garcia-travel-fantino.png"
+            src="/images/logo-garcia-travel-fantino.webp"
             alt="Garcia Travel Fantino"
-            width={1024}
-            height={1024}
+            width={512}
+            height={512}
             priority
             className={cn(
               "transition-all duration-500 drop-shadow-xl object-contain origin-left",
@@ -85,7 +85,7 @@ const Header = () => {
         {/* CTA Button */}
         <div className="hidden lg:block">
           <Button 
-            onClick={() => openWhatsApp("Hola Garcia Travel, me gustaria cotizar un viaje.")}
+            onClick={() => openWhatsApp("Hola Garcia Travel, me gustaría cotizar un viaje.")}
             className="bg-brand-teal text-white hover:bg-brand-teal/90 rounded-full px-8 font-bold tracking-widest text-xs h-10 shadow-lg shadow-brand-teal/20"
           >
             <PlugConnectedIcon size={16} className="mr-2" />
@@ -123,7 +123,7 @@ const Header = () => {
           </Link>
         ))}
         <Button 
-          onClick={() => openWhatsApp("Hola Garcia Travel, me gustaria cotizar un viaje.")}
+          onClick={() => openWhatsApp("Hola Garcia Travel, me gustaría cotizar un viaje.")}
           className="mt-4 w-full bg-brand-teal text-white rounded-full py-4 font-bold tracking-widest"
         >
           <PlugConnectedIcon size={18} className="mr-2" />

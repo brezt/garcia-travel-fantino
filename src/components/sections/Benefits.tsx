@@ -3,14 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { Headphones, ShieldCheck, Star, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const benefits = [
   {
     icon: <Headphones className="w-8 h-8 text-brand-teal" />,
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
-    title: "ASESORIA LOCAL",
-    description: "Expertos dominicanos guiandote en cada paso para asegurar el viaje de tus suenos.",
+    title: "ASESORÍA LOCAL",
+    description: "Expertos dominicanos guiándote en cada paso para asegurar el viaje de tus sueños.",
   },
   {
     icon: <ShieldCheck className="w-8 h-8 text-brand-teal" />,
@@ -22,7 +22,7 @@ const benefits = [
     icon: <Star className="w-8 h-8 text-brand-teal" />,
     image: "https://images.unsplash.com/photo-1543731068-7e0f5beff43a?q=80&w=1200&auto=format&fit=crop",
     title: "EXPERIENCIA VIP",
-    description: "Disenamos itinerarios exclusivos para que disfrutes sin preocupaciones.",
+    description: "Diseñamos itinerarios exclusivos para que disfrutes sin preocupaciones.",
   },
   {
     icon: <Clock className="w-8 h-8 text-brand-teal" />,
@@ -40,7 +40,7 @@ const Benefits = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              initial={false}
+              data-reveal initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}

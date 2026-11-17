@@ -3,14 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { Check, MapPin, Shield } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import PlugConnectedIcon from "@/components/ui/plug-connected-icon";
 
 const Experience = () => {
   return (
     <section className="py-24 px-6 bg-brand-slate overflow-hidden" id="experiencias">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-        <motion.div initial={false} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2 relative">
+        <motion.div data-reveal initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2 relative">
           <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-2xl">
             <Image src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=1968&auto=format&fit=crop" alt="Viajero contemplando el paisaje" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent" />
@@ -21,7 +21,7 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        <motion.div initial={false} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2">
+        <motion.div data-reveal initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2">
           <p className="text-brand-teal text-xs font-bold tracking-[0.2em] uppercase mb-4">Garcia Travel Fantino</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-navy leading-tight font-montserrat uppercase mb-6">
             Diseñamos Viajes <br/><span className="font-playfair italic text-brand-teal lowercase text-5xl md:text-6xl lg:text-7xl">con</span> Propósito
