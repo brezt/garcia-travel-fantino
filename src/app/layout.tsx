@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 import MotionProvider from "@/components/providers/MotionProvider";
-import "@fontsource-variable/montserrat";
-import "@fontsource-variable/inter";
-import "@fontsource-variable/playfair-display/wght-italic.css";
 import "./globals.css";
 
 const title = "Garcia Travel Fantino | Agencia de viajes en Fantino, RD";
