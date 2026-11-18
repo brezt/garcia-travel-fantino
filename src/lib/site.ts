@@ -15,6 +15,14 @@ export const siteConfig = {
     region: "Sánchez Ramírez",
     country: "DO",
   },
+  /** Horario de la oficina (formato 24 h). Por WhatsApp e Instagram atienden a cualquier hora. */
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "18:00",
+    label: "Oficina: lunes a sábado, de 8:00 a. m. a 6:00 p. m.",
+    onlineLabel: "Por WhatsApp y redes: a cualquier hora",
+  },
   mapsUrl: "https://maps.app.goo.gl/fRjMFPPwmgQexGEbA",
   instagram: "https://www.instagram.com/garciatravelfantino/",
   facebook: "https://www.facebook.com/GarciaTravelFantino/",

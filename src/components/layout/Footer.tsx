@@ -110,6 +110,11 @@ const Footer = () => {
               <br />
               República Dominicana
             </address>
+            <p className="mt-3 text-left text-xs leading-relaxed text-white/50">
+              {siteConfig.openingHours.label}
+              <br />
+              {siteConfig.openingHours.onlineLabel}
+            </p>
           </div>
         </div>
       </div>

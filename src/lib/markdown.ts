@@ -30,6 +30,7 @@ const contactBlock = () =>
     `- Teléfono y WhatsApp: ${siteConfig.phone}`,
     `- WhatsApp directo: ${getWhatsAppUrl("Hola Garcia Travel, me gustaría cotizar un viaje.")}`,
     `- Correo: ${siteConfig.email}`,
+    `- Horario: ${siteConfig.openingHours.label}. ${siteConfig.openingHours.onlineLabel}.`,
     `- Ubicación: ${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.locality}, provincia ${siteConfig.address.region}, República Dominicana ([Google Maps](${siteConfig.mapsUrl}))`,
     `- Instagram: ${siteConfig.instagram}`,
     `- Facebook: ${siteConfig.facebook}`,

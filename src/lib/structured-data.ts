@@ -39,6 +39,14 @@ export const getOrganizationJsonLd = () => ({
     addressCountry: siteConfig.address.country,
   },
   hasMap: siteConfig.mapsUrl,
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: siteConfig.openingHours.days.map((day) => `https://schema.org/${day}`),
+      opens: siteConfig.openingHours.opens,
+      closes: siteConfig.openingHours.closes,
+    },
+  ],
   areaServed: [
     { "@type": "Country", name: "República Dominicana" },
     { "@type": "City", name: siteConfig.address.locality },
@@ -62,6 +70,15 @@ export const getOrganizationJsonLd = () => ({
       contactOption: "WhatsApp",
       areaServed: "DO",
       availableLanguage: ["es"],
+      // Por WhatsApp atienden a cualquier hora.
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(
+          (day) => `https://schema.org/${day}`
+        ),
+        opens: "00:00",
+        closes: "23:59",
+      },
     },
   ],
   hasOfferCatalog: {
