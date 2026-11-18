@@ -1,18 +1,24 @@
 /**
  * Medición de visitas: Google Analytics 4 y píxel de Meta (Facebook/Instagram).
  *
- * Cada herramienta se activa solo si su ID está definido como variable de
- * entorno en Hostinger (y se vuelve a compilar el sitio):
- *   NEXT_PUBLIC_GA_ID        → ID de medición de Google Analytics, p. ej. G-ABC123XYZ
- *   NEXT_PUBLIC_META_PIXEL_ID → ID del píxel de Meta, p. ej. 1234567890123456
- * Sin IDs no se carga ningún script de terceros. Guía: ANALYTICS_SETUP.md
+ * Los IDs no son secretos (aparecen en el HTML de cualquier web que los use).
+ *   Google Analytics: DEFAULT_GA_ID, o NEXT_PUBLIC_GA_ID en Hostinger para cambiarlo
+ *     (NEXT_PUBLIC_GA_ID=off lo desactiva).
+ *   Píxel de Meta: NEXT_PUBLIC_META_PIXEL_ID en Hostinger (o DEFAULT_META_PIXEL_ID).
+ * Las variables se leen al compilar: tras cambiarlas hay que volver a implementar.
+ * Guía: ANALYTICS_SETUP.md
  */
 
 const GA_ID_PATTERN = /^G-[A-Z0-9]{4,20}$/;
 const META_PIXEL_PATTERN = /^\d{6,20}$/;
 
-const rawGaId = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim().toUpperCase();
-const rawPixelId = (process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "").trim();
+/** Propiedad "Garcia Travel Fantino" de Google Analytics (flujo web, creado el 2026-11-18). */
+const DEFAULT_GA_ID = "G-4CT4YG1F19";
+/** Píxel de Meta: vacío hasta crearlo. */
+const DEFAULT_META_PIXEL_ID = "";
+
+const rawGaId = (process.env.NEXT_PUBLIC_GA_ID?.trim() || DEFAULT_GA_ID).toUpperCase();
+const rawPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() || DEFAULT_META_PIXEL_ID;
 
 /** ID de Google Analytics, o cadena vacía si no está configurado o no es válido. */
 export const GA_ID = GA_ID_PATTERN.test(rawGaId) ? rawGaId : "";

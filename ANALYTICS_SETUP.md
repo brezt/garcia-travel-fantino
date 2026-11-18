@@ -1,7 +1,11 @@
 # Medir visitas: Google Analytics y píxel de Meta
 
-La web ya trae el código para medir visitas. Queda apagado hasta que pongas los dos
-IDs en Hostinger. Puedes activar solo uno de los dos si quieres.
+La web ya trae el código para medir visitas.
+
+- **Google Analytics está activo** con el ID `G-4CT4YG1F19` (propiedad "Garcia Travel Fantino",
+  creada el 18/11/2026). Está escrito en `src/lib/analytics.ts`; para cambiarlo sin tocar
+  código, define `NEXT_PUBLIC_GA_ID` en Hostinger (o `off` para apagarlo).
+- **El píxel de Meta** queda apagado hasta que pongas su ID (sección 2 y 3).
 
 ## Qué se mide
 
