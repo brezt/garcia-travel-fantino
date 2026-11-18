@@ -3,6 +3,7 @@ import Script from "next/script";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 import MotionProvider from "@/components/providers/MotionProvider";
 import WebMcpTools from "@/components/agents/WebMcpTools";
+import Analytics from "@/components/analytics/Analytics";
 import { getSiteJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
@@ -107,6 +108,7 @@ export default function RootLayout({
         />
         <MotionProvider>{children}</MotionProvider>
         <WebMcpTools />
+        <Analytics />
       </body>
       <Script id="extension-attribute-cleanup">
         {`

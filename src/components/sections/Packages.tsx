@@ -26,7 +26,7 @@ const Packages = () => {
               <h3 className="text-2xl font-black text-brand-teal font-montserrat uppercase leading-tight mb-4">Romántica</h3>
               <div className="flex items-center gap-2 text-xs text-brand-navy/60 mb-2"><MapPin size={14} className="text-brand-teal" />Resorts Solo Adultos</div>
               <div className="flex items-center gap-2 text-xs text-brand-navy/60 mb-6"><Sun size={14} className="text-brand-teal" />Spa & Cenas en la Playa</div>
-              <button onClick={() => openWhatsApp("Hola, me interesa el paquete de Escapada Romántica. ¿Podrían enviarme más detalles?")} className="bg-brand-teal text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider hover:bg-brand-teal/90 transition-colors w-max">Descubrir</button>
+              <button onClick={() => openWhatsApp("Hola, me interesa el paquete de Escapada Romántica. ¿Podrían enviarme más detalles?", "paquetes")} className="bg-brand-teal text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider hover:bg-brand-teal/90 transition-colors w-max">Descubrir</button>
             </div>
           </motion.div>
 
@@ -38,7 +38,7 @@ const Packages = () => {
             </div>
             <div className="relative flex-1 m-4 mt-0 rounded-2xl overflow-hidden">
               <Image src="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?q=80&w=2070&auto=format&fit=crop" alt="Aventura Extrema" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-              <button onClick={() => openWhatsApp("Hola, quiero cotizar un viaje de Aventura Extrema.")} className="absolute bottom-4 left-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-4 py-2 rounded-full border border-white/30 hover:bg-white/40 transition-colors">Ver Detalles</button>
+              <button onClick={() => openWhatsApp("Hola, quiero cotizar un viaje de Aventura Extrema.", "paquetes")} className="absolute bottom-4 left-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-4 py-2 rounded-full border border-white/30 hover:bg-white/40 transition-colors">Ver Detalles</button>
             </div>
           </motion.div>
 
@@ -49,7 +49,7 @@ const Packages = () => {
             </div>
             <div className="relative flex-1 m-4 mt-0 rounded-2xl overflow-hidden">
               <Image src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?q=80&w=1974&auto=format&fit=crop" alt="Felicidad Familiar" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-              <button onClick={() => openWhatsApp("Hola, quisiera información sobre paquetes de viaje familiares en resorts.")} className="absolute bottom-4 right-4 bg-white text-brand-navy text-[10px] font-bold px-4 py-2 rounded-full shadow-lg hover:bg-brand-slate transition-colors flex items-center gap-2"><Sun size={12} className="text-brand-gold" />Resorts</button>
+              <button onClick={() => openWhatsApp("Hola, quisiera información sobre paquetes de viaje familiares en resorts.", "paquetes")} className="absolute bottom-4 right-4 bg-white text-brand-navy text-[10px] font-bold px-4 py-2 rounded-full shadow-lg hover:bg-brand-slate transition-colors flex items-center gap-2"><Sun size={12} className="text-brand-gold" />Resorts</button>
             </div>
           </motion.div>
 
@@ -58,7 +58,7 @@ const Packages = () => {
               <h3 className="text-2xl font-black text-white font-montserrat uppercase leading-tight mb-1">Mundo</h3>
               <h3 className="text-2xl font-black text-white font-montserrat uppercase leading-tight mb-4">Global</h3>
               <p className="text-xs text-white/60 mb-6 max-w-[180px]">Cruceros, Europa, Asia y América Latina. Asesoría de visado y seguro de viaje.</p>
-              <button onClick={() => openWhatsApp("Hola, estoy interesado/a en un viaje internacional Mundo Global. ¿Podrían asesorarme?")} className="bg-brand-cyan text-brand-navy text-[10px] font-black px-6 py-3 rounded-full uppercase tracking-wider hover:bg-white transition-colors w-max">Consultar</button>
+              <button onClick={() => openWhatsApp("Hola, estoy interesado/a en un viaje internacional Mundo Global. ¿Podrían asesorarme?", "paquetes")} className="bg-brand-cyan text-brand-navy text-[10px] font-black px-6 py-3 rounded-full uppercase tracking-wider hover:bg-white transition-colors w-max">Consultar</button>
             </div>
             <div className="w-full sm:w-[45%] relative h-48 sm:h-full order-1 sm:order-2">
               <Image src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=2020&auto=format&fit=crop" alt="Mundo Global" fill sizes="(min-width: 768px) 23vw, 100vw" className="object-cover" />

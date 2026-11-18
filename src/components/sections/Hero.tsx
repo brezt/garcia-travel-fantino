@@ -128,7 +128,7 @@ const Hero = () => {
           className="hero-rise hero-rise-4 flex flex-col sm:flex-row gap-4 z-20"
         >
           <Button
-            onClick={() => openWhatsApp("Hola, me gustaría planificar mis vacaciones con ustedes.")}
+            onClick={() => openWhatsApp("Hola, me gustaría planificar mis vacaciones con ustedes.", "portada")}
             className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 rounded-full px-10 py-6 font-bold tracking-widest text-sm shadow-xl shadow-brand-gold/20"
           >
             <PlugConnectedIcon size={18} className="mr-2" />
