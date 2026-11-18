@@ -51,7 +51,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center group relative z-50">
           <Image
-            src="/images/logo-garcia-travel-fantino.webp"
+            src="/images/logo-garcia-travel-fantino-360.webp"
             alt="Garcia Travel Fantino"
             width={512}
             height={512}

@@ -124,7 +124,7 @@ const Destinations = () => {
             className="md:col-span-2 md:row-span-1 relative rounded-3xl overflow-hidden group min-h-[200px]"
           >
             <Image
-              src="/images/hero-beach.jpg"
+              src="/images/hero-beach.webp"
               alt="Puerto Plata"
               fill
               sizes="(min-width: 768px) 66vw, 100vw"
