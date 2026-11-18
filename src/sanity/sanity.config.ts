@@ -1,6 +1,7 @@
 "use client";
 
 import { esESLocale } from "@sanity/locale-es-es";
+import { Inbox } from "lucide-react";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { dataset, projectId, studioBasePath } from "./env";
@@ -12,7 +13,14 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: studioBasePath,
-  schema: { types: schemaTypes },
+  schema: {
+    types: schemaTypes,
+    // Las solicitudes solo llegan desde la web: no se crean a mano en el panel.
+    templates: (templates) => templates.filter((template) => template.schemaType !== "solicitud"),
+  },
+  document: {
+    newDocumentOptions: (options) => options.filter((option) => option.templateId !== "solicitud"),
+  },
   plugins: [
     structureTool({
       title: "Contenido",
@@ -20,6 +28,16 @@ export default defineConfig({
         S.list()
           .title("Contenido de la web")
           .items([
+            S.listItem()
+              .title("Solicitudes de clientes")
+              .icon(Inbox)
+              .child(
+                S.documentTypeList("solicitud")
+                  .title("Solicitudes de clientes")
+                  .defaultOrdering([{ field: "recibida", direction: "desc" }])
+                  .initialValueTemplates([])
+              ),
+            S.divider(),
             S.documentTypeListItem("paquete").title("Promociones y paquetes"),
             S.documentTypeListItem("destino").title("Destinos"),
             S.documentTypeListItem("post").title("Blog"),
