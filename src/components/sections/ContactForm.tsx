@@ -63,7 +63,7 @@ const ContactForm = () => {
             <p className="text-white/80 text-sm mb-10 relative z-10 max-w-xs">Escríbenos ahora por WhatsApp o completa el formulario para una atención personalizada inmediata.</p>
             <button onClick={() => openWhatsApp("Hola Garcia Travel, me gustaría hacer una consulta.")} className="bg-white text-brand-teal text-xs font-bold px-8 py-4 rounded-full uppercase tracking-wider mb-8 flex items-center justify-center gap-2 relative z-10 hover:bg-brand-slate transition-colors w-max shadow-lg"><Phone size={16} />Escribir por WhatsApp</button>
             <div className="relative z-10 mb-10 h-36 w-full overflow-hidden rounded-2xl border border-white/20 shadow-lg">
-              <Image src="/images/hero-beach.jpg" alt="Playa tropical para planificar viajes" fill sizes="(min-width: 768px) 360px, 100vw" className="object-cover" />
+              <Image src="/images/hero-beach.webp" alt="Playa tropical para planificar viajes" fill sizes="(min-width: 768px) 360px, 100vw" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 to-transparent" />
             </div>
             <div className="mt-auto flex flex-col gap-6 relative z-10">

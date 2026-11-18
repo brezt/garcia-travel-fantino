@@ -52,7 +52,7 @@ const Hero = () => {
     <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden flex items-center justify-center pt-20">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-beach.jpg"
+          src="/images/hero-beach.webp"
           alt="Pareja caminando por una playa tropical"
           fill
           priority
@@ -68,7 +68,7 @@ const Hero = () => {
             muted
             playsInline
             preload="metadata"
-            poster="/images/hero-beach.jpg"
+            poster="/images/hero-beach.webp"
             aria-hidden="true"
           >
             <source src="/images/hero-video.webm" type="video/webm" />
@@ -93,11 +93,8 @@ const Hero = () => {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 flex flex-col items-center"
+        <div
+          className="hero-rise mb-6 flex flex-col items-center"
         >
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
             Descubre el <br />
@@ -111,33 +108,24 @@ const Hero = () => {
               Garcia Travel
             </span>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl text-white font-medium mb-10 max-w-2xl drop-shadow-md font-inter"
+        <p
+          className="hero-rise hero-rise-2 text-lg md:text-xl text-white font-medium mb-10 max-w-2xl drop-shadow-md font-inter"
         >
           Vuelos, hoteles y paquetes turísticos diseñados para ti. <br className="hidden md:block" />
           Experiencias inolvidables con asesoría en exclusiva desde Fantino.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/15 px-5 py-3 text-xs font-bold uppercase tracking-widest text-white shadow-xl backdrop-blur-md"
+        <div
+          className="hero-rise hero-rise-3 mb-8 inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/15 px-5 py-3 text-xs font-bold uppercase tracking-widest text-white shadow-xl backdrop-blur-md"
         >
           <PlugConnectedIcon size={20} className="text-brand-gold" />
           Conexión directa con un asesor
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 z-20"
+        <div
+          className="hero-rise hero-rise-4 flex flex-col sm:flex-row gap-4 z-20"
         >
           <Button
             onClick={() => openWhatsApp("Hola, me gustaría planificar mis vacaciones con ustedes.")}
@@ -151,7 +139,7 @@ const Hero = () => {
               VER DESTINOS
             </Button>
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

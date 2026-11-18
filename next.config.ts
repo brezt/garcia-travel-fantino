@@ -38,7 +38,9 @@ const homeLinkHeader = [
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true,
+    // Sin optimizar en el servidor: cada CDN entrega la imagen al tamaño justo (ver image-loader.ts).
+    loader: "custom",
+    loaderFile: "./src/lib/image-loader.ts",
     remotePatterns: [
       {
         protocol: "https",
@@ -65,6 +67,12 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // Imágenes y tipografías de /public: caché larga. Si se reemplaza un archivo,
+      // súbelo con otro nombre para que los navegadores lo vuelvan a descargar.
+      ...["/images/:path*", "/fonts/:path*"].map((source) => ({
+        source,
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      })),
       {
         source: "/",
         headers: [

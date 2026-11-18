@@ -1,0 +1,7 @@
+# Caché larga para imágenes y tipografías si el servidor web (LiteSpeed/Apache)
+# sirve los archivos estáticos directamente. Si se reemplaza un archivo, súbelo con otro nombre.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|avif|jpg|jpeg|png|svg|gif|ico|mp4|webm|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
