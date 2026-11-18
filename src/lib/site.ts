@@ -7,10 +7,21 @@ export const siteConfig = {
   phone: "+1 829 884 6811",
   phoneHref: "+18298846811",
   email: "info@garciatravelfantino.com",
+  // Igual que en el Perfil de Empresa de Google (verificado): mismos datos en todas partes ayuda al SEO local.
   address: {
+    street: "Calle Hermanas Mirabal",
+    postalCode: "43000",
     locality: "Fantino",
     region: "Sánchez Ramírez",
     country: "DO",
+  },
+  /** Horario de la oficina (formato 24 h). Por WhatsApp e Instagram atienden a cualquier hora. */
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "18:00",
+    label: "Oficina: lunes a sábado, de 8:00 a. m. a 6:00 p. m.",
+    onlineLabel: "Por WhatsApp y redes: todos los días, a cualquier hora",
   },
   mapsUrl: "https://maps.app.goo.gl/fRjMFPPwmgQexGEbA",
   instagram: "https://www.instagram.com/garciatravelfantino/",

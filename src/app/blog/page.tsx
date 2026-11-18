@@ -3,22 +3,32 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PostCard from "@/components/blog/PostCard";
 import { getPosts } from "@/lib/cms";
-import { getSiteUrl } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
+import { getPageJsonLd } from "@/lib/structured-data";
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
+const description =
+  "Consejos, destinos y novedades de viaje de Garcia Travel Fantino para planificar tu próxima aventura.";
+
+export const metadata: Metadata = pageMetadata({
   title: "Blog de viajes",
-  description:
-    "Consejos, destinos y novedades de viaje de Garcia Travel Fantino para planificar tu próxima aventura.",
-  alternates: { canonical: getSiteUrl("/blog"), types: { "text/markdown": "/blog.md" } },
-};
+  description,
+  path: "/blog",
+  markdownPath: "/blog.md",
+});
 
 export default async function BlogPage() {
   const posts = await getPosts();
 
   return (
     <main className="relative bg-brand-slate">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getPageJsonLd("CollectionPage", "Blog de viajes", "/blog", description)),
+        }}
+      />
       <Header />
       <section className="bg-brand-navy px-6 pb-16 pt-36 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">Blog de viajes</p>

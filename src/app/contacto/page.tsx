@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowLeft, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ContactForm from "@/components/sections/ContactForm";
 import { siteConfig } from "@/lib/site";
 import { getPageJsonLd } from "@/lib/structured-data";
+import { pageMetadata } from "@/lib/seo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const description = `Cotiza tu viaje con ${siteConfig.name}: WhatsApp y teléfono ${siteConfig.phone}, correo ${siteConfig.email}, en ${siteConfig.address.locality}, República Dominicana.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contacto",
   description,
-  alternates: { canonical: "/contacto", types: { "text/markdown": "/contacto.md" } },
-};
+  path: "/contacto",
+  markdownPath: "/contacto.md",
+});
 
 const channels = [
   {
@@ -28,10 +30,12 @@ const channels = [
   {
     Icon: MapPin,
     label: "Ubicación",
-    value: `${siteConfig.address.locality}, ${siteConfig.address.region}, República Dominicana`,
+    value: `${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.locality}, ${siteConfig.address.region}, República Dominicana`,
     href: siteConfig.mapsUrl,
   },
 ];
+
+const hours = [siteConfig.openingHours.label, siteConfig.openingHours.onlineLabel];
 
 export default function ContactPage() {
   return (
@@ -71,6 +75,15 @@ export default function ContactPage() {
               </a>
             ))}
           </address>
+          <div className="mt-4 flex items-start gap-4 rounded-2xl bg-white/10 p-5 text-white">
+            <Clock size={22} className="mt-0.5 shrink-0 text-brand-gold" />
+            <span>
+              <span className="block text-[10px] font-bold uppercase tracking-widest text-white/60">Horario</span>
+              {hours.map((line) => (
+                <span key={line} className="block text-sm font-medium">{line}</span>
+              ))}
+            </span>
+          </div>
         </div>
       </section>
       <ContactForm />

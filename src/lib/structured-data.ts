@@ -15,6 +15,8 @@ export const getOrganizationJsonLd = () => ({
   "@type": ["TravelAgency", "Organization"],
   "@id": ORGANIZATION_ID,
   name: siteConfig.name,
+  // Formas en que la gente busca la agencia (con tilde, sin "Fantino").
+  alternateName: ["Agencia de Viaje García Travel Fantino", "García Travel Fantino", "Garcia Travel", "García Travel"],
   legalName: siteConfig.legalName,
   description: siteConfig.description,
   disambiguatingDescription: aboutIntro,
@@ -30,11 +32,21 @@ export const getOrganizationJsonLd = () => ({
   email: siteConfig.email,
   address: {
     "@type": "PostalAddress",
+    streetAddress: siteConfig.address.street,
+    postalCode: siteConfig.address.postalCode,
     addressLocality: siteConfig.address.locality,
     addressRegion: siteConfig.address.region,
     addressCountry: siteConfig.address.country,
   },
   hasMap: siteConfig.mapsUrl,
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: siteConfig.openingHours.days.map((day) => `https://schema.org/${day}`),
+      opens: siteConfig.openingHours.opens,
+      closes: siteConfig.openingHours.closes,
+    },
+  ],
   areaServed: [
     { "@type": "Country", name: "República Dominicana" },
     { "@type": "City", name: siteConfig.address.locality },
@@ -58,6 +70,15 @@ export const getOrganizationJsonLd = () => ({
       contactOption: "WhatsApp",
       areaServed: "DO",
       availableLanguage: ["es"],
+      // Por WhatsApp atienden a cualquier hora.
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(
+          (day) => `https://schema.org/${day}`
+        ),
+        opens: "00:00",
+        closes: "23:59",
+      },
     },
   ],
   hasOfferCatalog: {
@@ -189,7 +210,7 @@ export const getContentJsonLd = (page: ContentPage) => {
       getBreadcrumbJsonLd([
         {
           name: page.type === "package" ? "Paquetes" : "Destinos",
-          path: page.type === "package" ? "/#paquetes" : "/#destinos",
+          path: page.type === "package" ? "/paquetes" : "/destinos",
         },
         { name: page.shortTitle, path },
       ]),
@@ -236,5 +257,32 @@ export const getHomeJsonLd = (pages: ContentPage[]) => ({
         url: getSiteUrl(getContentPath(page)),
       })),
     },
+  ],
+});
+
+/** Página de listado (/destinos o /paquetes): la colección, sus elementos y las migas. */
+export const getListJsonLd = (name: string, path: string, description: string, pages: ContentPage[]) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": getSiteUrl(`${path}#webpage`),
+      name,
+      description,
+      url: getSiteUrl(path),
+      inLanguage: "es-DO",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": ORGANIZATION_ID },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: pages.map((page, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: page.title,
+          url: getSiteUrl(getContentPath(page)),
+        })),
+      },
+    },
+    getBreadcrumbJsonLd([{ name, path }]),
   ],
 });
