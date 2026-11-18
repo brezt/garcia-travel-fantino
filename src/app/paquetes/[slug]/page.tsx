@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TravelContentPage from "@/components/seo/TravelContentPage";
-import { getContentJsonLd, isExpired } from "@/lib/travel-content";
+import { isExpired } from "@/lib/travel-content";
+import { getContentJsonLd } from "@/lib/structured-data";
 import { getPackageBySlug, getPackages } from "@/lib/cms";
 import { getSiteUrl } from "@/lib/site";
 
@@ -36,6 +37,7 @@ export const generateMetadata = async ({
     description: travelPackage.description,
     alternates: {
       canonical: url,
+      types: { "text/markdown": `/paquetes/${travelPackage.slug}.md` },
     },
     ...(isExpired(travelPackage) ? { robots: { index: false, follow: true } } : {}),
     openGraph: {

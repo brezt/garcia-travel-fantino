@@ -20,6 +20,12 @@ export const siteConfig = {
   shareImagePath: "/images/hero-beach.jpg",
 };
 
+/**
+ * Fecha (AAAA-MM-DD) del último cambio del contenido fijo de la web (textos que no
+ * vienen del panel). Se usa como "lastmod" en el sitemap: actualízala al cambiar textos.
+ */
+export const SITE_UPDATED_AT = "2026-11-18";
+
 export const getSiteUrl = (path = "/") => {
   const baseUrl = siteConfig.url.replace(/\/$/, "");
   const cleanPath = path.startsWith("/") ? path : `/${path}`;

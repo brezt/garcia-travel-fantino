@@ -2,15 +2,21 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getPageJsonLd } from "@/lib/structured-data";
 
 type LegalPageProps = {
   title: string;
+  path: string;
   updatedAt: string;
   sections: { title: string; body: string[] }[];
 };
 
-const LegalPage = ({ title, updatedAt, sections }: LegalPageProps) => (
+const LegalPage = ({ title, path, updatedAt, sections }: LegalPageProps) => (
   <main className="relative">
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(getPageJsonLd("WebPage", title, path)) }}
+    />
     <Header />
     <section className="bg-brand-navy px-6 pb-16 pt-36">
       <div className="mx-auto max-w-3xl">

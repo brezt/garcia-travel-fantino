@@ -36,6 +36,7 @@ type SanityImage = SanityImageSource & { alt?: string };
 
 type SanityContentPage = {
   _type: "destino" | "paquete";
+  _updatedAt?: string;
   slug: string;
   title: string;
   shortTitle?: string;
@@ -57,6 +58,7 @@ type SanityContentPage = {
 
 const contentProjection = `{
   _type,
+  _updatedAt,
   "slug": slug.current,
   title,
   shortTitle,
@@ -102,6 +104,7 @@ const toContentPage = (doc: SanityContentPage): ContentPage => {
     highlights: doc.highlights ?? [],
     sections: doc.sections ?? [],
     faq: doc.faq ?? [],
+    updatedAt: doc._updatedAt,
     whatsappMessage:
       doc.whatsappMessage ||
       `Hola Garcia Travel, me interesa "${doc.title}". ¿Me pueden dar más información?`,
@@ -163,6 +166,7 @@ export type PostSummary = {
   slug: string;
   title: string;
   publishedAt: string;
+  updatedAt?: string;
   excerpt: string;
   coverImage?: string;
   coverAlt: string;
@@ -172,7 +176,8 @@ export type Post = PostSummary & {
   body: PortableTextBlock[];
 };
 
-type SanityPost = Omit<PostSummary, "coverImage" | "coverAlt"> & {
+type SanityPost = Omit<PostSummary, "coverImage" | "coverAlt" | "updatedAt"> & {
+  _updatedAt?: string;
   coverImage?: SanityImage;
   body?: PortableTextBlock[];
 };
@@ -181,6 +186,7 @@ const toPostSummary = ({ coverImage, ...post }: SanityPost): PostSummary => ({
   slug: post.slug,
   title: post.title,
   publishedAt: post.publishedAt,
+  updatedAt: post._updatedAt,
   excerpt: post.excerpt ?? "",
   coverImage: coverImage ? imageUrl(coverImage, 1600) : undefined,
   coverAlt: coverImage?.alt || post.title,
@@ -192,7 +198,7 @@ export const getPosts = async (limit = 50) =>
   (
     (await cmsFetch<SanityPost[]>(
       `*[${postFilter}] | order(publishedAt desc)[0...$limit]{
-        "slug": slug.current, title, publishedAt, excerpt, coverImage
+        "slug": slug.current, _updatedAt, title, publishedAt, excerpt, coverImage
       }`.replace("$limit", String(limit))
     )) ?? []
   ).map(toPostSummary);
@@ -200,7 +206,7 @@ export const getPosts = async (limit = 50) =>
 export const getPostBySlug = async (slug: string): Promise<Post | undefined> => {
   const post = await cmsFetch<SanityPost | null>(
     `*[${postFilter} && slug.current == $slug][0]{
-      "slug": slug.current, title, publishedAt, excerpt, coverImage, body
+      "slug": slug.current, _updatedAt, title, publishedAt, excerpt, coverImage, body
     }`,
     { slug }
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TravelContentPage from "@/components/seo/TravelContentPage";
-import { getContentJsonLd } from "@/lib/travel-content";
+import { getContentJsonLd } from "@/lib/structured-data";
 import { getDestinationBySlug, getDestinations } from "@/lib/cms";
 import { getSiteUrl } from "@/lib/site";
 
@@ -36,6 +36,7 @@ export const generateMetadata = async ({
     description: destination.description,
     alternates: {
       canonical: url,
+      types: { "text/markdown": `/destinos/${destination.slug}.md` },
     },
     openGraph: {
       title: destination.metaTitle,
