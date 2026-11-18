@@ -3,8 +3,8 @@ import { siteConfig } from "@/lib/site";
 export type LegalSection = { title: string; body: string[] };
 
 /** Fecha (AAAA-MM-DD) de la última revisión de las páginas legales. */
-export const LEGAL_UPDATED_AT = "2026-11-16";
-export const LEGAL_UPDATED_LABEL = "16 de noviembre de 2026";
+export const LEGAL_UPDATED_AT = "2026-11-18";
+export const LEGAL_UPDATED_LABEL = "18 de noviembre de 2026";
 
 export const privacySections: LegalSection[] = [
   {
@@ -32,6 +32,13 @@ export const privacySections: LegalSection[] = [
     body: [
       "Solo compartimos tus datos con los proveedores necesarios para prestar el servicio que solicitas (aerolíneas, hoteles, operadores de excursiones, aseguradoras de viaje) o cuando la ley lo exija. No vendemos tus datos a terceros.",
       "Las conversaciones por WhatsApp se rigen además por la política de privacidad de WhatsApp (Meta).",
+    ],
+  },
+  {
+    title: "Estadísticas de visitas y cookies",
+    body: [
+      "Para saber cuántas personas visitan la web, de dónde llegan y qué páginas o botones usan (por ejemplo, el botón de WhatsApp o el formulario de contacto), podemos usar Google Analytics (Google) y el píxel de Meta (Facebook e Instagram). Estas herramientas usan cookies y registran datos técnicos como el tipo de dispositivo y navegador, la ubicación aproximada y las páginas vistas. No les enviamos tu nombre, teléfono, correo ni el texto de tus mensajes.",
+      "Usamos esa información de forma agregada para mejorar la web y medir nuestras campañas en redes sociales. Puedes borrar o bloquear las cookies desde la configuración de tu navegador, o instalar el complemento oficial de Google para desactivar Analytics (tools.google.com/dlpage/gaoptout). Google y Meta tratan esos datos según sus propias políticas de privacidad.",
     ],
   },
   {

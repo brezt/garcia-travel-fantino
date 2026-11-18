@@ -67,7 +67,7 @@ const BookingBar = () => {
       "Quedo atento/a para recibir soporte y disponibilidad.",
     ].join("\n");
 
-    openWhatsApp(message);
+    openWhatsApp(message, "buscador");
   };
 
   return (

@@ -142,7 +142,7 @@ const Destinations = () => {
               </div>
               <button
                 onClick={() =>
-                  openWhatsApp("Hola, me interesa obtener información sobre viajes a Puerto Plata.")
+                  openWhatsApp("Hola, me interesa obtener información sobre viajes a Puerto Plata.", "destinos")
                 }
                 className="text-brand-teal hover:text-white transition-colors"
               >
@@ -175,7 +175,7 @@ const Destinations = () => {
             </p>
             <button
               onClick={() =>
-                openWhatsApp("Hola, me interesan las opciones de viajes internacionales y cruceros.")
+                openWhatsApp("Hola, me interesan las opciones de viajes internacionales y cruceros.", "destinos")
               }
               className="bg-white text-brand-teal text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-wider self-start relative z-10 hover:bg-brand-navy hover:text-white transition-colors"
             >

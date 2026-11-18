@@ -15,7 +15,7 @@ type FeaturedPromotionProps = {
 
 const FeaturedPromotion = ({ promo }: FeaturedPromotionProps) => {
   const handlePromoClick = () => {
-    openWhatsApp(promo.whatsappMessage);
+    openWhatsApp(promo.whatsappMessage, "promocion");
   };
   const [intro, ...moreSections] = promo.sections;
   const facts = [
