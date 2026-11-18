@@ -11,7 +11,8 @@ export const WEBSITE_ID = getSiteUrl("/#website");
  * están en la web: faltan dirección exacta, código postal, horario y coordenadas.
  */
 export const getOrganizationJsonLd = () => ({
-  "@type": "TravelAgency",
+  // "Organization" explícito porque algunos analizadores no reconocen TravelAgency como subtipo.
+  "@type": ["TravelAgency", "Organization"],
   "@id": ORGANIZATION_ID,
   name: siteConfig.name,
   legalName: siteConfig.legalName,
@@ -208,3 +209,32 @@ export const getContentJsonLd = (page: ContentPage) => {
     ],
   };
 };
+
+/** Portada: la página y la lista de destinos y promociones que muestra. */
+export const getHomeJsonLd = (pages: ContentPage[]) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": getSiteUrl("/#webpage"),
+      name: siteConfig.name,
+      description: siteConfig.description,
+      url: getSiteUrl(),
+      inLanguage: "es-DO",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": ORGANIZATION_ID },
+      mainEntity: { "@id": getSiteUrl("/#destinos-y-promociones") },
+    },
+    {
+      "@type": "ItemList",
+      "@id": getSiteUrl("/#destinos-y-promociones"),
+      name: "Destinos y promociones",
+      itemListElement: pages.map((page, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: page.title,
+        url: getSiteUrl(getContentPath(page)),
+      })),
+    },
+  ],
+});

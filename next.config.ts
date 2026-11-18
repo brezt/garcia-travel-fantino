@@ -12,6 +12,16 @@ const markdownPages = [
   "/paquetes/:slug",
 ];
 
+/**
+ * Alias en inglés de las páginas institucionales. Los analizadores de IA (como el de
+ * Hostinger) buscan enlaces con "about" y "terms"; el contenido es el mismo y la URL
+ * canónica sigue siendo la española.
+ */
+const englishAliases = [
+  { source: "/about", destination: "/nosotros" },
+  { source: "/terms", destination: "/terminos" },
+];
+
 /** Un agente que pide "Accept: text/markdown" recibe Markdown en vez de HTML. */
 const wantsMarkdown = [{ type: "header" as const, key: "accept", value: ".*text/markdown.*" }];
 
@@ -20,6 +30,7 @@ const homeLinkHeader = [
   '</llms.txt>; rel="describedby"; type="text/plain"',
   '</index.md>; rel="alternate"; type="text/markdown"',
   '</sitemap.xml>; rel="sitemap"; type="application/xml"',
+  '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
   '</nosotros>; rel="about"',
   '</privacidad>; rel="privacy-policy"',
   '</terminos>; rel="terms-of-service"',
@@ -42,6 +53,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        ...englishAliases,
         { source: "/index.md", destination: "/md" },
         ...markdownPages.map((page) => ({ source: `${page}.md`, destination: `/md${page}` })),
         { source: "/", has: wantsMarkdown, destination: "/md" },
