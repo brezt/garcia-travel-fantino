@@ -6,15 +6,17 @@ import Footer from "@/components/layout/Footer";
 import ContactForm from "@/components/sections/ContactForm";
 import { siteConfig } from "@/lib/site";
 import { getPageJsonLd } from "@/lib/structured-data";
+import { pageMetadata } from "@/lib/seo";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 const description = `Cotiza tu viaje con ${siteConfig.name}: WhatsApp y teléfono ${siteConfig.phone}, correo ${siteConfig.email}, en ${siteConfig.address.locality}, República Dominicana.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contacto",
   description,
-  alternates: { canonical: "/contacto", types: { "text/markdown": "/contacto.md" } },
-};
+  path: "/contacto",
+  markdownPath: "/contacto.md",
+});
 
 const channels = [
   {

@@ -32,6 +32,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...["/destinos", "/paquetes"].map((path) => ({
+      url: getSiteUrl(path),
+      lastModified: homeUpdatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...["/nosotros", "/contacto"].map((path) => ({
       url: getSiteUrl(path),
       lastModified: latest(SITE_UPDATED_AT),

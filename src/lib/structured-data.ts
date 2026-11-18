@@ -15,6 +15,8 @@ export const getOrganizationJsonLd = () => ({
   "@type": ["TravelAgency", "Organization"],
   "@id": ORGANIZATION_ID,
   name: siteConfig.name,
+  // Formas en que la gente busca la agencia (con tilde, sin "Fantino").
+  alternateName: ["García Travel Fantino", "Garcia Travel", "García Travel"],
   legalName: siteConfig.legalName,
   description: siteConfig.description,
   disambiguatingDescription: aboutIntro,
@@ -189,7 +191,7 @@ export const getContentJsonLd = (page: ContentPage) => {
       getBreadcrumbJsonLd([
         {
           name: page.type === "package" ? "Paquetes" : "Destinos",
-          path: page.type === "package" ? "/#paquetes" : "/#destinos",
+          path: page.type === "package" ? "/paquetes" : "/destinos",
         },
         { name: page.shortTitle, path },
       ]),
@@ -236,5 +238,32 @@ export const getHomeJsonLd = (pages: ContentPage[]) => ({
         url: getSiteUrl(getContentPath(page)),
       })),
     },
+  ],
+});
+
+/** Página de listado (/destinos o /paquetes): la colección, sus elementos y las migas. */
+export const getListJsonLd = (name: string, path: string, description: string, pages: ContentPage[]) => ({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": getSiteUrl(`${path}#webpage`),
+      name,
+      description,
+      url: getSiteUrl(path),
+      inLanguage: "es-DO",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": ORGANIZATION_ID },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: pages.map((page, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: page.title,
+          url: getSiteUrl(getContentPath(page)),
+        })),
+      },
+    },
+    getBreadcrumbJsonLd([{ name, path }]),
   ],
 });

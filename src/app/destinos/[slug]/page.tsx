@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import TravelContentPage from "@/components/seo/TravelContentPage";
 import { getContentJsonLd } from "@/lib/structured-data";
 import { getDestinationBySlug, getDestinations } from "@/lib/cms";
-import { getSiteUrl } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
 type DestinationPageProps = {
   params: Promise<{ slug: string }>;
@@ -27,36 +27,14 @@ export const generateMetadata = async ({
     return {};
   }
 
-  const url = getSiteUrl(`/destinos/${destination.slug}`);
-
-  return {
-    title: {
-      absolute: destination.metaTitle,
-    },
+  return pageMetadata({
+    title: destination.metaTitle,
+    absoluteTitle: true,
     description: destination.description,
-    alternates: {
-      canonical: url,
-      types: { "text/markdown": `/destinos/${destination.slug}.md` },
-    },
-    openGraph: {
-      title: destination.metaTitle,
-      description: destination.description,
-      url,
-      type: "website",
-      images: [
-        {
-          url: destination.heroImage,
-          alt: destination.imageAlt,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: destination.metaTitle,
-      description: destination.description,
-      images: [destination.heroImage],
-    },
-  };
+    path: `/destinos/${destination.slug}`,
+    markdownPath: `/destinos/${destination.slug}.md`,
+    image: { url: destination.heroImage, alt: destination.imageAlt },
+  });
 };
 
 export default async function DestinationPage({ params }: DestinationPageProps) {
@@ -68,6 +46,7 @@ export default async function DestinationPage({ params }: DestinationPageProps) 
   }
 
   const jsonLd = getContentJsonLd(destination);
+  const related = (await getDestinations()).filter((item) => item.slug !== destination.slug);
 
   return (
     <>
@@ -75,7 +54,7 @@ export default async function DestinationPage({ params }: DestinationPageProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TravelContentPage page={destination} />
+      <TravelContentPage page={destination} related={related} />
     </>
   );
 }

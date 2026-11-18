@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import TravelContentPage from "@/components/seo/TravelContentPage";
 import { isExpired } from "@/lib/travel-content";
 import { getContentJsonLd } from "@/lib/structured-data";
-import { getPackageBySlug, getPackages } from "@/lib/cms";
-import { getSiteUrl } from "@/lib/site";
+import { getActivePackages, getPackageBySlug, getPackages } from "@/lib/cms";
+import { pageMetadata } from "@/lib/seo";
 
 type PackagePageProps = {
   params: Promise<{ slug: string }>;
@@ -28,37 +28,15 @@ export const generateMetadata = async ({
     return {};
   }
 
-  const url = getSiteUrl(`/paquetes/${travelPackage.slug}`);
-
-  return {
-    title: {
-      absolute: travelPackage.metaTitle,
-    },
+  return pageMetadata({
+    title: travelPackage.metaTitle,
+    absoluteTitle: true,
     description: travelPackage.description,
-    alternates: {
-      canonical: url,
-      types: { "text/markdown": `/paquetes/${travelPackage.slug}.md` },
-    },
-    ...(isExpired(travelPackage) ? { robots: { index: false, follow: true } } : {}),
-    openGraph: {
-      title: travelPackage.metaTitle,
-      description: travelPackage.description,
-      url,
-      type: "website",
-      images: [
-        {
-          url: travelPackage.heroImage,
-          alt: travelPackage.imageAlt,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: travelPackage.metaTitle,
-      description: travelPackage.description,
-      images: [travelPackage.heroImage],
-    },
-  };
+    path: `/paquetes/${travelPackage.slug}`,
+    markdownPath: `/paquetes/${travelPackage.slug}.md`,
+    image: { url: travelPackage.heroImage, alt: travelPackage.imageAlt },
+    noIndex: isExpired(travelPackage),
+  });
 };
 
 export default async function PackagePage({ params }: PackagePageProps) {
@@ -70,6 +48,7 @@ export default async function PackagePage({ params }: PackagePageProps) {
   }
 
   const jsonLd = getContentJsonLd(travelPackage);
+  const related = (await getActivePackages()).filter((item) => item.slug !== travelPackage.slug);
 
   return (
     <>
@@ -77,7 +56,7 @@ export default async function PackagePage({ params }: PackagePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TravelContentPage page={travelPackage} />
+      <TravelContentPage page={travelPackage} related={related} />
     </>
   );
 }

@@ -8,7 +8,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getPostBySlug, getPosts } from "@/lib/cms";
 import { formatDate } from "@/lib/dates";
-import { getSiteUrl } from "@/lib/site";
+import { getSiteUrl, siteConfig } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 import { getBreadcrumbJsonLd, ORGANIZATION_ID, WEBSITE_ID } from "@/lib/structured-data";
 import { imageUrl } from "@/sanity/client";
 
@@ -29,23 +30,16 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
     return {};
   }
 
-  const url = getSiteUrl(`/blog/${post.slug}`);
-  const images = post.coverImage ? [{ url: post.coverImage, alt: post.coverAlt }] : undefined;
-
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: url, types: { "text/markdown": `/blog/${post.slug}.md` } },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url,
-      type: "article",
-      publishedTime: post.publishedAt,
-      images,
-    },
-    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt },
-  };
+    path: `/blog/${post.slug}`,
+    markdownPath: `/blog/${post.slug}.md`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt,
+    image: post.coverImage ? { url: post.coverImage, alt: post.coverAlt } : undefined,
+  });
 };
 
 type BodyImage = { asset?: { _ref: string }; alt?: string; caption?: string };
@@ -114,8 +108,9 @@ export default async function PostPage({ params }: PostPageProps) {
         description: post.excerpt,
         datePublished: post.publishedAt,
         ...(post.updatedAt ? { dateModified: post.updatedAt } : {}),
-        image: post.coverImage,
+        image: post.coverImage ?? getSiteUrl(siteConfig.shareImagePath),
         url: getSiteUrl(`/blog/${post.slug}`),
+        mainEntityOfPage: getSiteUrl(`/blog/${post.slug}`),
         inLanguage: "es-DO",
         isPartOf: { "@id": WEBSITE_ID },
         author: { "@id": ORGANIZATION_ID },

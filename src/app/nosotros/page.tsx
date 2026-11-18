@@ -9,14 +9,16 @@ import Benefits from "@/components/sections/Benefits";
 import { aboutIntro } from "@/lib/about";
 import { siteConfig } from "@/lib/site";
 import { getPageJsonLd } from "@/lib/structured-data";
+import { pageMetadata } from "@/lib/seo";
 
 const description = `Conoce a ${siteConfig.name}, agencia de viajes en ${siteConfig.address.locality}, República Dominicana: misión, visión, valores y servicios.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Sobre nosotros",
   description,
-  alternates: { canonical: "/nosotros", types: { "text/markdown": "/nosotros.md" } },
-};
+  path: "/nosotros",
+  markdownPath: "/nosotros.md",
+});
 
 export default function AboutPage() {
   return (

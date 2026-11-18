@@ -96,25 +96,28 @@ const Hero = () => {
         <div
           className="hero-rise mb-6 flex flex-col items-center"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
-            Descubre el <br />
-            Mundo
-          </h1>
-          <div className="flex items-center gap-4 mt-2">
-            <span className="font-playfair italic text-5xl md:text-7xl text-brand-cyan lowercase">
-              con
-            </span>
+          {/* Todo el lema va dentro del h1 para que Google lea el nombre de la agencia en el título principal. */}
+          <h1 className="flex flex-col items-center">
             <span className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
-              Garcia Travel
+              Descubre el <br />
+              Mundo
             </span>
-          </div>
+            <span className="flex items-center gap-4 mt-2">
+              <span className="font-playfair italic text-5xl md:text-7xl text-brand-cyan lowercase">
+                con
+              </span>
+              <span className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
+                Garcia Travel
+              </span>
+            </span>
+          </h1>
         </div>
 
         <p
           className="hero-rise hero-rise-2 text-lg md:text-xl text-white font-medium mb-10 max-w-2xl drop-shadow-md font-inter"
         >
-          Vuelos, hoteles y paquetes turísticos diseñados para ti. <br className="hidden md:block" />
-          Experiencias inolvidables con asesoría en exclusiva desde Fantino.
+          Tu agencia de viajes en Fantino, República Dominicana. <br className="hidden md:block" />
+          Vuelos, hoteles y paquetes turísticos diseñados para ti.
         </p>
 
         <div

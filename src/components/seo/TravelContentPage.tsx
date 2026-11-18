@@ -1,14 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Check, FileDown, MapPin, MessageCircle } from "lucide-react";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ContentCard from "@/components/seo/ContentCard";
 import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { isExpired, type ContentPage } from "@/lib/travel-content";
 
 type TravelContentPageProps = {
   page: ContentPage;
+  /** Otros destinos o paquetes para enlazar al final de la página. */
+  related?: ContentPage[];
 };
 
-const TravelContentPage = ({ page }: TravelContentPageProps) => {
+const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
+  const isPackage = page.type === "package";
+  const listPath = isPackage ? "/paquetes" : "/destinos";
   const expired = isExpired(page);
   const whatsappUrl = getWhatsAppUrl(
     expired
@@ -18,7 +25,8 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
 
   return (
     <main className="min-h-screen bg-brand-slate text-brand-navy">
-      <section className="relative min-h-[76vh] overflow-hidden px-6 pb-16 pt-28 md:pt-32">
+      <Header />
+      <section className="relative min-h-[76vh] overflow-hidden px-6 pb-16 pt-32 md:pt-36">
         <Image
           src={page.heroImage}
           alt={page.imageAlt}
@@ -31,11 +39,11 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
 
         <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-end min-h-[58vh]">
           <Link
-            href="/"
+            href={listPath}
             className="mb-10 inline-flex w-max items-center gap-2 rounded-full bg-white/15 px-5 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md transition-colors hover:bg-white/25"
           >
             <ArrowLeft size={16} />
-            Volver al inicio
+            {isPackage ? "Todos los paquetes" : "Todos los destinos"}
           </Link>
 
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-brand-cyan">
@@ -134,7 +142,7 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
             ) : null}
           </div>
 
-          <aside className="h-max rounded-[2rem] bg-brand-navy p-8 text-white shadow-xl shadow-brand-navy/10 lg:sticky lg:top-8">
+          <aside className="h-max rounded-[2rem] bg-brand-navy p-8 text-white shadow-xl shadow-brand-navy/10 lg:sticky lg:top-28">
             <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-cyan">
               Incluye y destaca
             </p>
@@ -179,6 +187,30 @@ const TravelContentPage = ({ page }: TravelContentPageProps) => {
           </aside>
         </div>
       </section>
+
+      {related.length > 0 ? (
+        <section className="px-6 pb-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-montserrat text-3xl font-black uppercase text-brand-navy md:text-4xl">
+                {isPackage ? "Otras promociones" : "Otros destinos"}
+              </h2>
+              <Link
+                href={listPath}
+                className="text-xs font-bold uppercase tracking-widest text-brand-teal hover:text-brand-navy"
+              >
+                {isPackage ? "Ver todos los paquetes" : "Ver todos los destinos"}
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {related.slice(0, 3).map((item) => (
+                <ContentCard key={item.slug} page={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+      <Footer />
     </main>
   );
 };

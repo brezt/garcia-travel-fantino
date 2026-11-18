@@ -63,15 +63,16 @@ const Footer = () => {
 
         <div className="flex-1 flex gap-12 lg:gap-24">
           <div>
-            <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Servicios</h4>
+            <p className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Servicios</p>
             <ul className="space-y-4 text-xs text-white/70">
               <li><Link href="/#contacto" className="hover:text-white transition-colors">Vuelos</Link></li>
               <li><Link href="/#contacto" className="hover:text-white transition-colors">Hoteles</Link></li>
-              <li><Link href="/#paquetes" className="hover:text-white transition-colors">Paquetes</Link></li>
+              <li><Link href="/paquetes" className="hover:text-white transition-colors">Paquetes</Link></li>
+              <li><Link href="/destinos" className="hover:text-white transition-colors">Destinos</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Agencia</h4>
+            <p className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Agencia</p>
             <ul className="space-y-4 text-xs text-white/70">
               <li><Link href="/about" className="hover:text-white transition-colors">Sobre nosotros</Link></li>
               <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
@@ -83,7 +84,7 @@ const Footer = () => {
 
         <div className="flex-1 flex justify-start md:justify-end">
           <div className="text-left md:text-right w-full max-w-[220px]">
-            <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6 text-left">Ubicación</h4>
+            <p className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6 text-left">Ubicación</p>
             <a
               href={mapsUrl}
               className="group block text-left"
