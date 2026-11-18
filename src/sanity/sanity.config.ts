@@ -6,6 +6,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { dataset, projectId, studioBasePath } from "./env";
 import { schemaTypes } from "./schemaTypes";
+import { withPublishNotification } from "./actions";
 
 export default defineConfig({
   name: "garcia-travel",
@@ -20,6 +21,9 @@ export default defineConfig({
   },
   document: {
     newDocumentOptions: (options) => options.filter((option) => option.templateId !== "solicitud"),
+    // Al publicar, la web se actualiza al momento y se avisa a Bing (IndexNow).
+    actions: (actions) =>
+      actions.map((action) => (action.action === "publish" ? withPublishNotification(action) : action)),
   },
   plugins: [
     structureTool({
