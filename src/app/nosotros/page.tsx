@@ -30,7 +30,7 @@ export default function AboutPage() {
         }}
       />
       <Header />
-      <section className="bg-brand-navy px-6 pb-16 pt-36">
+      <section className="bg-brand-navy px-6 pb-16 pt-44 md:pt-48">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/"

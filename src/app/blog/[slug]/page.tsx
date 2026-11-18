@@ -127,7 +127,7 @@ export default async function PostPage({ params }: PostPageProps) {
     <main className="relative bg-brand-slate">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <section className="relative overflow-hidden bg-brand-navy px-6 pb-16 pt-36">
+      <section className="relative overflow-hidden bg-brand-navy px-6 pb-16 pt-44 md:pt-48">
         {post.coverImage ? (
           <>
             <Image src={post.coverImage} alt={post.coverAlt} fill priority sizes="100vw" className="object-cover" />
