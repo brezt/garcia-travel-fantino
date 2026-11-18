@@ -19,11 +19,7 @@ type ContentListPageProps = {
 const ContentListPage = ({ eyebrow, title, intro, pages, emptyText, whatsappMessage }: ContentListPageProps) => (
   <main className="relative bg-brand-slate">
     <Header />
-<<<<<<< HEAD
     <section className="bg-brand-navy px-6 pb-16 pt-44 md:pt-48">
-=======
-    <section className="bg-brand-navy px-6 pb-16 pt-36">
->>>>>>> 92f14240f42afab9b0f1c224601ebdd57f740fe9
       <div className="mx-auto max-w-7xl">
         <Link
           href="/"
