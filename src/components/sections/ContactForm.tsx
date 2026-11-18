@@ -5,23 +5,41 @@ import Image from "next/image";
 import { Send, MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { openWhatsApp } from "@/lib/whatsapp";
+import { guardarSolicitud } from "@/lib/solicitudes";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", date: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [trap, setTrap] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSending) return;
+    setIsSending(true);
+
+    // Primero se guarda en el panel /admin; si falla, igual se abre WhatsApp.
+    await guardarSolicitud({
+      origen: "formulario",
+      nombre: formData.name,
+      telefono: formData.phone,
+      email: formData.email,
+      fecha: formData.date,
+      mensaje: formData.message,
+      website: trap,
+    });
+
     const msg = `Hola Garcia Travel, he completado el formulario de contacto:
 *Nombre:* ${formData.name}
 *Teléfono:* ${formData.phone}
 *Email:* ${formData.email}
 *Fecha Estimada:* ${formData.date}
 *Mensaje:* ${formData.message}`;
+    setIsSending(false);
     openWhatsApp(msg);
     setIsSubmitted(true);
     setFormData({ name: "", phone: "", email: "", date: "", message: "" });
@@ -52,11 +70,11 @@ const ContactForm = () => {
             {isSubmitted ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center w-full">
                 <div className="w-20 h-20 bg-brand-teal/10 rounded-full flex items-center justify-center mx-auto mb-6"><Send className="text-brand-teal w-10 h-10" /></div>
-                <h3 className="text-3xl font-black text-brand-navy mb-2 font-montserrat">Mensaje Enviado!</h3>
-                <p className="text-brand-navy/60 font-inter">Un asesor de Garcia Travel se comunicará contigo muy pronto.</p>
+                <h3 className="text-3xl font-black text-brand-navy mb-2 font-montserrat">¡Solicitud recibida!</h3>
+                <p className="text-brand-navy/60 font-inter">Si WhatsApp no se abrió, no te preocupes: un asesor de Garcia Travel te contactará muy pronto.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="w-full">
+              <form onSubmit={handleSubmit} className="relative w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Nombre Completo</label><input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="Juan Pérez" /></div>
                   <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Teléfono</label><input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="+1 829..." /></div>
@@ -64,7 +82,10 @@ const ContactForm = () => {
                   <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Fecha Estimada</label><input type="text" name="date" value={formData.date} onChange={handleChange} className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="DD/MM/AA" /></div>
                   <div className="md:col-span-2"><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Tu Mensaje</label><textarea name="message" value={formData.message} onChange={handleChange} rows={3} className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors resize-none" placeholder="¿Cómo podemos ayudarte a planear tu viaje perfecto?"></textarea></div>
                 </div>
-                <button type="submit" className="w-full bg-brand-teal text-white font-bold tracking-widest text-xs uppercase py-4 rounded-xl hover:bg-brand-navy transition-colors">Enviar Mensaje</button>
+                <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                  <label>No completar<input type="text" name="website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} /></label>
+                </div>
+                <button type="submit" disabled={isSending} className="w-full bg-brand-teal text-white font-bold tracking-widest text-xs uppercase py-4 rounded-xl hover:bg-brand-navy transition-colors disabled:opacity-60">{isSending ? "Enviando…" : "Enviar Mensaje"}</button>
               </form>
             )}
           </div>
