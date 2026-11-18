@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Blog de viajes",
   description:
     "Consejos, destinos y novedades de viaje de Garcia Travel Fantino para planificar tu próxima aventura.",
-  alternates: { canonical: getSiteUrl("/blog") },
+  alternates: { canonical: getSiteUrl("/blog"), types: { "text/markdown": "/blog.md" } },
 };
 
 export default async function BlogPage() {

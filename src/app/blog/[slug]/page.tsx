@@ -8,7 +8,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getPostBySlug, getPosts } from "@/lib/cms";
 import { formatDate } from "@/lib/dates";
-import { getSiteUrl, siteConfig } from "@/lib/site";
+import { getSiteUrl } from "@/lib/site";
+import { getBreadcrumbJsonLd, ORGANIZATION_ID, WEBSITE_ID } from "@/lib/structured-data";
 import { imageUrl } from "@/sanity/client";
 
 type PostPageProps = {
@@ -34,7 +35,7 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: url },
+    alternates: { canonical: url, types: { "text/markdown": `/blog/${post.slug}.md` } },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -106,13 +107,25 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.publishedAt,
-    image: post.coverImage,
-    url: getSiteUrl(`/blog/${post.slug}`),
-    publisher: { "@type": "TravelAgency", name: siteConfig.name, url: getSiteUrl() },
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.publishedAt,
+        ...(post.updatedAt ? { dateModified: post.updatedAt } : {}),
+        image: post.coverImage,
+        url: getSiteUrl(`/blog/${post.slug}`),
+        inLanguage: "es-DO",
+        isPartOf: { "@id": WEBSITE_ID },
+        author: { "@id": ORGANIZATION_ID },
+        publisher: { "@id": ORGANIZATION_ID },
+      },
+      getBreadcrumbJsonLd([
+        { name: "Blog", path: "/blog" },
+        { name: post.title, path: `/blog/${post.slug}` },
+      ]),
+    ],
   };
 
   return (

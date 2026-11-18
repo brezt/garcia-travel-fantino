@@ -10,69 +10,12 @@ import Experience from "@/components/sections/Experience";
 import MissionVisionValues from "@/components/sections/MissionVisionValues";
 import Testimonials from "@/components/sections/Testimonials";
 import ContactForm from "@/components/sections/ContactForm";
-import { getSiteUrl, siteConfig } from "@/lib/site";
 import PromotionsGrid from "@/components/sections/PromotionsGrid";
 import LatestPosts from "@/components/sections/LatestPosts";
 import { getActivePackages, getPosts, getTestimonials } from "@/lib/cms";
-import type { ContentPage } from "@/lib/travel-content";
 
 // Se regenera como mucho cada minuto (y al momento con el webhook del panel).
 export const revalidate = 60;
-
-const getJsonLd = (featured?: ContentPage) => ({
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  "@id": getSiteUrl("#travel-agency"),
-  name: siteConfig.name,
-  legalName: siteConfig.legalName,
-  description: siteConfig.description,
-  url: getSiteUrl(),
-  logo: getSiteUrl(siteConfig.logoPath),
-  image: getSiteUrl(siteConfig.shareImagePath),
-  telephone: siteConfig.phone,
-  email: siteConfig.email,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: siteConfig.address.locality,
-    addressRegion: siteConfig.address.region,
-    addressCountry: siteConfig.address.country,
-  },
-  areaServed: [
-    {
-      "@type": "Country",
-      name: "República Dominicana",
-    },
-    {
-      "@type": "Place",
-      name: "Fantino",
-    },
-  ],
-  sameAs: [siteConfig.instagram, siteConfig.facebook, siteConfig.mapsUrl],
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: siteConfig.phone,
-    contactType: "customer service",
-    areaServed: "DO",
-    availableLanguage: ["es"],
-  },
-  makesOffer: [
-    {
-      "@type": "Offer",
-      name: "Paquetes turísticos",
-      description: "Vuelos, hoteles, excursiones, traslados y seguros de viajes.",
-    },
-    ...(featured
-      ? [
-          {
-            "@type": "Offer",
-            name: featured.title,
-            description: featured.description,
-            url: getSiteUrl(`/paquetes/${featured.slug}`),
-          },
-        ]
-      : []),
-  ],
-});
 
 export default async function Home() {
   const [activePackages, testimonials, posts] = await Promise.all([
@@ -82,14 +25,9 @@ export default async function Home() {
   ]);
   const featured = activePackages.find((travelPackage) => travelPackage.featured);
   const otherPromotions = activePackages.filter((travelPackage) => travelPackage !== featured);
-  const jsonLd = getJsonLd(featured);
 
   return (
     <main className="relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <Header />
       <Hero />
       <BookingBar />

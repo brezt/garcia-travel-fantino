@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 import MotionProvider from "@/components/providers/MotionProvider";
+import WebMcpTools from "@/components/agents/WebMcpTools";
+import { getSiteJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
 const title = "Garcia Travel Fantino | Agencia de viajes en Fantino, RD";
@@ -34,6 +36,9 @@ export const metadata: Metadata = {
   publisher: siteConfig.name,
   alternates: {
     canonical: "/",
+    types: {
+      "text/markdown": "/index.md",
+    },
   },
   robots: {
     index: true,
@@ -96,7 +101,12 @@ export default function RootLayout({
           {/* Sin JavaScript las animaciones de entrada no se ejecutan: mostrar el contenido igual. */}
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getSiteJsonLd()) }}
+        />
         <MotionProvider>{children}</MotionProvider>
+        <WebMcpTools />
       </body>
       <Script id="extension-attribute-cleanup">
         {`

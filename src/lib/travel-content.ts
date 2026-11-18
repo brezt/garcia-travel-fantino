@@ -33,6 +33,8 @@ export type ContentPage = {
     answer: string;
   }[];
   whatsappMessage: string;
+  /** Fecha de la última edición (la pone el panel). */
+  updatedAt?: string;
 };
 
 export const destinations: ContentPage[] = [
@@ -240,22 +242,3 @@ export const getDestinationBySlug = (slug: string) =>
 
 export const getPackageBySlug = (slug: string) =>
   packages.find((travelPackage) => travelPackage.slug === slug);
-
-export const getContentJsonLd = (page: ContentPage) => ({
-  "@context": "https://schema.org",
-  "@type": page.type === "package" ? "TouristTrip" : "TouristDestination",
-  name: page.title,
-  description: page.description,
-  url: getSiteUrl(
-    page.type === "package"
-      ? `/paquetes/${page.slug}`
-      : `/destinos/${page.slug}`
-  ),
-  image: resolveContentImageUrl(page.heroImage),
-  provider: {
-    "@type": "TravelAgency",
-    name: siteConfig.name,
-    url: getSiteUrl(),
-    telephone: siteConfig.phone,
-  },
-});

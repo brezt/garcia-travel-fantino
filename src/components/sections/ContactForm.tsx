@@ -7,6 +7,13 @@ import { motion } from "motion/react";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { guardarSolicitud } from "@/lib/solicitudes";
 
+/** Atributos WebMCP declarativos: describen el formulario a los asistentes de IA del navegador. */
+const webMcpFormAttributes = {
+  toolname: "solicitar_cotizacion",
+  tooldescription:
+    "Envía a Garcia Travel Fantino una solicitud de cotización de viaje con nombre, teléfono, correo, fecha estimada y mensaje. Un asesor responde por WhatsApp o teléfono.",
+} as React.FormHTMLAttributes<HTMLFormElement>;
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", date: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -74,7 +81,7 @@ const ContactForm = () => {
                 <p className="text-brand-navy/60 font-inter">Si WhatsApp no se abrió, no te preocupes: un asesor de Garcia Travel te contactará muy pronto.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="relative w-full">
+              <form onSubmit={handleSubmit} className="relative w-full" {...webMcpFormAttributes}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Nombre Completo</label><input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="Juan Pérez" /></div>
                   <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Teléfono</label><input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="+1 829..." /></div>
