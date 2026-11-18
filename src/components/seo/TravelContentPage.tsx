@@ -26,7 +26,7 @@ const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
   return (
     <main className="min-h-screen bg-brand-slate text-brand-navy">
       <Header />
-      <section className="relative min-h-[76vh] overflow-hidden px-6 pb-16 pt-32 md:pt-36">
+      <section className="relative min-h-[76vh] overflow-hidden px-6 pb-16 pt-44 md:pt-48">
         <Image
           src={page.heroImage}
           alt={page.imageAlt}

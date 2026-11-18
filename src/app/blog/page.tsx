@@ -30,7 +30,7 @@ export default async function BlogPage() {
         }}
       />
       <Header />
-      <section className="bg-brand-navy px-6 pb-16 pt-36 text-center">
+      <section className="bg-brand-navy px-6 pb-16 pt-44 md:pt-48 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">Blog de viajes</p>
         <h1 className="mt-2 font-montserrat text-4xl font-black uppercase text-white md:text-6xl">
           Ideas para tu próximo viaje
