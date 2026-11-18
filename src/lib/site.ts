@@ -21,7 +21,7 @@ export const siteConfig = {
     opens: "08:00",
     closes: "18:00",
     label: "Oficina: lunes a sábado, de 8:00 a. m. a 6:00 p. m.",
-    onlineLabel: "Por WhatsApp y redes: a cualquier hora",
+    onlineLabel: "Por WhatsApp y redes: todos los días, a cualquier hora",
   },
   mapsUrl: "https://maps.app.goo.gl/fRjMFPPwmgQexGEbA",
   instagram: "https://www.instagram.com/garciatravelfantino/",
