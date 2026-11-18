@@ -18,6 +18,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...["/privacidad", "/terminos"].map((path) => ({
+      url: getSiteUrl(path),
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })),
     ...[...destinations, ...packages]
       .filter((page) => !isExpired(page))
       .map((page) => ({

@@ -65,17 +65,17 @@ const Footer = () => {
           <div>
             <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Servicios</h4>
             <ul className="space-y-4 text-xs text-white/70">
-              <li><Link href="#" className="hover:text-white transition-colors">Vuelos</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Hoteles</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Paquetes</Link></li>
+              <li><Link href="/#contacto" className="hover:text-white transition-colors">Vuelos</Link></li>
+              <li><Link href="/#contacto" className="hover:text-white transition-colors">Hoteles</Link></li>
+              <li><Link href="/#paquetes" className="hover:text-white transition-colors">Paquetes</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Legales</h4>
             <ul className="space-y-4 text-xs text-white/70">
-              <li><Link href="#" className="hover:text-white transition-colors">Términos</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Privacidad</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Ayuda</Link></li>
+              <li><Link href="/terminos" className="hover:text-white transition-colors">Términos</Link></li>
+              <li><Link href="/privacidad" className="hover:text-white transition-colors">Privacidad</Link></li>
+              <li><Link href="/#contacto" className="hover:text-white transition-colors">Ayuda</Link></li>
             </ul>
           </div>
         </div>
