@@ -103,6 +103,13 @@ const Footer = () => {
                 Ver ubicación en Google Maps
               </span>
             </a>
+            <address className="mt-3 text-left text-xs not-italic leading-relaxed text-white/50">
+              {siteConfig.address.street}
+              <br />
+              {siteConfig.address.postalCode} {siteConfig.address.locality}, {siteConfig.address.region}
+              <br />
+              República Dominicana
+            </address>
           </div>
         </div>
       </div>

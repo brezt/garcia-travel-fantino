@@ -24,7 +24,7 @@ export async function GET() {
     aboutIntro,
     "",
     `Servicios: ${services.join(", ")}.`,
-    `Contacto: teléfono y WhatsApp ${siteConfig.phone}, correo ${siteConfig.email}. Ubicación: ${siteConfig.address.locality}, ${siteConfig.address.region}, República Dominicana.`,
+    `Contacto: teléfono y WhatsApp ${siteConfig.phone}, correo ${siteConfig.email}. Ubicación: ${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.locality}, ${siteConfig.address.region}, República Dominicana.`,
     "Las cotizaciones son personalizadas y se hacen por WhatsApp o con el formulario de contacto.",
     "Cada página está disponible en Markdown añadiendo .md a la dirección, o pidiendo la página con la cabecera Accept: text/markdown.",
     "",

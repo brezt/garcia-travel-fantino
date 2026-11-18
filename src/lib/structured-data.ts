@@ -16,7 +16,7 @@ export const getOrganizationJsonLd = () => ({
   "@id": ORGANIZATION_ID,
   name: siteConfig.name,
   // Formas en que la gente busca la agencia (con tilde, sin "Fantino").
-  alternateName: ["García Travel Fantino", "Garcia Travel", "García Travel"],
+  alternateName: ["Agencia de Viaje García Travel Fantino", "García Travel Fantino", "Garcia Travel", "García Travel"],
   legalName: siteConfig.legalName,
   description: siteConfig.description,
   disambiguatingDescription: aboutIntro,
@@ -32,6 +32,8 @@ export const getOrganizationJsonLd = () => ({
   email: siteConfig.email,
   address: {
     "@type": "PostalAddress",
+    streetAddress: siteConfig.address.street,
+    postalCode: siteConfig.address.postalCode,
     addressLocality: siteConfig.address.locality,
     addressRegion: siteConfig.address.region,
     addressCountry: siteConfig.address.country,

@@ -7,7 +7,10 @@ export const siteConfig = {
   phone: "+1 829 884 6811",
   phoneHref: "+18298846811",
   email: "info@garciatravelfantino.com",
+  // Igual que en el Perfil de Empresa de Google (verificado): mismos datos en todas partes ayuda al SEO local.
   address: {
+    street: "Calle Hermanas Mirabal",
+    postalCode: "43000",
     locality: "Fantino",
     region: "Sánchez Ramírez",
     country: "DO",

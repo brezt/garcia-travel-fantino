@@ -30,7 +30,7 @@ const channels = [
   {
     Icon: MapPin,
     label: "Ubicación",
-    value: `${siteConfig.address.locality}, ${siteConfig.address.region}, República Dominicana`,
+    value: `${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.locality}, ${siteConfig.address.region}, República Dominicana`,
     href: siteConfig.mapsUrl,
   },
 ];
