@@ -11,7 +11,8 @@ export const WEBSITE_ID = getSiteUrl("/#website");
  * están en la web: faltan dirección exacta, código postal, horario y coordenadas.
  */
 export const getOrganizationJsonLd = () => ({
-  "@type": "TravelAgency",
+  // "Organization" explícito porque algunos analizadores no reconocen TravelAgency como subtipo.
+  "@type": ["TravelAgency", "Organization"],
   "@id": ORGANIZATION_ID,
   name: siteConfig.name,
   legalName: siteConfig.legalName,

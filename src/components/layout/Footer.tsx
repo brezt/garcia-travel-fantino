@@ -73,9 +73,9 @@ const Footer = () => {
           <div>
             <h4 className="text-brand-teal text-[10px] font-bold tracking-[0.2em] uppercase mb-6">Agencia</h4>
             <ul className="space-y-4 text-xs text-white/70">
-              <li><Link href="/nosotros" className="hover:text-white transition-colors">Sobre nosotros</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Sobre nosotros</Link></li>
               <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
-              <li><Link href="/terminos" className="hover:text-white transition-colors">Términos y condiciones</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Términos y condiciones</Link></li>
               <li><Link href="/privacidad" className="hover:text-white transition-colors">Política de privacidad</Link></li>
             </ul>
           </div>
