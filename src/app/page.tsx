@@ -12,14 +12,16 @@ import Testimonials from "@/components/sections/Testimonials";
 import ContactForm from "@/components/sections/ContactForm";
 import PromotionsGrid from "@/components/sections/PromotionsGrid";
 import LatestPosts from "@/components/sections/LatestPosts";
-import { getActivePackages, getPosts, getTestimonials } from "@/lib/cms";
+import { getActivePackages, getDestinations, getPosts, getTestimonials } from "@/lib/cms";
+import { getHomeJsonLd } from "@/lib/structured-data";
 
 // Se regenera como mucho cada minuto (y al momento con el webhook del panel).
 export const revalidate = 60;
 
 export default async function Home() {
-  const [activePackages, testimonials, posts] = await Promise.all([
+  const [activePackages, destinations, testimonials, posts] = await Promise.all([
     getActivePackages(),
+    getDestinations(),
     getTestimonials(),
     getPosts(3),
   ]);
@@ -28,6 +30,10 @@ export default async function Home() {
 
   return (
     <main className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getHomeJsonLd([...activePackages, ...destinations])) }}
+      />
       <Header />
       <Hero />
       <BookingBar />
