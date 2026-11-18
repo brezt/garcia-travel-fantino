@@ -52,6 +52,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    // Dirección corta para pedir reseñas en Google (tarjetas, folletos, QR).
+    return ["/resena", "/resenas", "/opinion"].map((source) => ({
+      source,
+      destination: "https://g.page/r/CVpJOkEWoD7zEBM/review",
+      permanent: false,
+    }));
+  },
   async rewrites() {
     return {
       beforeFiles: [

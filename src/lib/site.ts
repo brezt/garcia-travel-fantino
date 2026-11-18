@@ -25,6 +25,8 @@ export const siteConfig = {
   },
   mapsUrl: "https://maps.app.goo.gl/fRjMFPPwmgQexGEbA",
   instagram: "https://www.instagram.com/garciatravelfantino/",
+  /** Enlace de Google para dejar una reseña (Perfil de Empresa → "Pedir reseñas"). */
+  reviewUrl: "https://g.page/r/CVpJOkEWoD7zEBM/review",
   facebook: "https://www.facebook.com/GarciaTravelFantino/",
   logoPath: "/images/logo-garcia-travel-fantino.png",
   promoImagePath: "/images/promo-feria-flores-medellin.png",

@@ -78,6 +78,7 @@ const Footer = () => {
               <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Términos y condiciones</Link></li>
               <li><Link href="/privacidad" className="hover:text-white transition-colors">Política de privacidad</Link></li>
+              <li><a href={siteConfig.reviewUrl} className="hover:text-white transition-colors">Déjanos tu reseña</a></li>
             </ul>
           </div>
         </div>
