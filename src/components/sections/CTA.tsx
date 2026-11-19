@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Phone, Mail } from "lucide-react";
 import { motion } from "motion/react";
+import { openWhatsApp } from "@/lib/whatsapp";
 
 const CTA = () => {
   return (
@@ -18,8 +19,18 @@ const CTA = () => {
           Habla ahora con un representante de Garcia Travel Fantino y recibe una cotización personalizada.
         </motion.p>
         <motion.div data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <Button variant="whatsapp" size="xl" className="w-full sm:w-auto h-20 px-12 text-lg shadow-2xl"><Phone size={28} className="mr-3" />Contactar por WhatsApp</Button>
-          <Button variant="outline" size="xl" className="w-full sm:w-auto h-20 px-12 text-lg text-white border-white hover:bg-white hover:text-brand-turquoise transition-all duration-300"><Mail size={28} className="mr-3" />Completar formulario</Button>
+          <Button
+            type="button"
+            onClick={() => openWhatsApp("Hola Garcia Travel, quiero una cotización personalizada para mi próximo viaje.", "cta")}
+            variant="whatsapp"
+            size="xl"
+            className="w-full sm:w-auto h-20 px-12 text-lg shadow-2xl"><Phone size={28} className="mr-3" />Contactar por WhatsApp</Button>
+          <a
+            href="#contacto"
+            className="inline-flex w-full sm:w-auto h-20 items-center justify-center whitespace-nowrap rounded-2xl border-2 border-white bg-transparent px-12 text-lg font-extrabold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-brand-turquoise focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+          >
+            <Mail size={28} className="mr-3" />Completar formulario
+          </a>
         </motion.div>
       </div>
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-brand-gold/30 rounded-full blur-3xl" />

@@ -137,10 +137,11 @@ const Hero = () => {
             <PlugConnectedIcon size={18} className="mr-2" />
             RESERVAR AHORA
           </Button>
-          <a href="#destinos">
-            <Button className="bg-white/90 text-brand-navy backdrop-blur-md hover:bg-white rounded-full px-10 py-6 font-bold tracking-widest text-sm">
-              VER DESTINOS
-            </Button>
+          <a
+            href="#destinos"
+            className="inline-flex items-center justify-center whitespace-nowrap bg-white/90 text-brand-navy backdrop-blur-md hover:bg-white rounded-full px-10 py-6 font-bold tracking-widest text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-turquoise focus-visible:ring-offset-2"
+          >
+            VER DESTINOS
           </a>
         </div>
       </div>
