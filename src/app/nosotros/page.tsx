@@ -40,7 +40,7 @@ export default function AboutPage() {
             Volver al inicio
           </Link>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">{siteConfig.name}</p>
-          <h1 className="mt-2 font-montserrat text-4xl font-black uppercase text-white md:text-5xl">Sobre nosotros</h1>
+          <h1 className="mt-2 font-montserrat text-3xl font-extrabold text-white md:text-[2.75rem] tracking-tight">Sobre nosotros</h1>
           <p className="mt-6 text-base leading-8 text-white/80 md:text-lg">{aboutIntro}</p>
         </div>
       </section>

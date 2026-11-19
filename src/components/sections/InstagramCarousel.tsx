@@ -80,7 +80,7 @@ const InstagramCarousel = () => {
             <p className="text-brand-teal text-xs font-bold tracking-[0.2em] uppercase mb-3">
               Instagram
             </p>
-            <h2 className="text-4xl md:text-5xl font-black text-brand-navy font-montserrat uppercase leading-tight">
+            <h2 className="text-3xl md:text-[2.75rem] font-extrabold text-brand-navy font-montserrat leading-tight tracking-tight">
               Últimas publicaciones
             </h2>
             {!isConfigured && (

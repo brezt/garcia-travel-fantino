@@ -32,7 +32,7 @@ const FeaturedPromotion = ({ promo }: FeaturedPromotionProps) => {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal">
               Promoción destacada
             </p>
-            <h2 className="font-montserrat text-4xl font-black uppercase leading-tight text-brand-navy md:text-5xl">
+            <h2 className="font-montserrat text-3xl font-extrabold leading-tight text-brand-navy md:text-[2.75rem] tracking-tight">
               {promo.title}
             </h2>
           </div>
@@ -90,7 +90,7 @@ const FeaturedPromotion = ({ promo }: FeaturedPromotionProps) => {
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-brand-gold">
                 <Sprout size={24} />
               </div>
-              <h3 className="font-montserrat mb-4 text-2xl font-black uppercase leading-tight">
+              <h3 className="font-montserrat mb-4 text-2xl font-extrabold leading-tight tracking-tight">
                 {intro?.title ?? promo.shortTitle}
               </h3>
               <p className="text-sm leading-relaxed text-white/85">{intro?.body ?? promo.description}</p>
@@ -105,7 +105,7 @@ const FeaturedPromotion = ({ promo }: FeaturedPromotionProps) => {
             <div>
               <div className="mb-6 flex items-center gap-3">
                 <Sparkles className="text-brand-gold" size={24} />
-                <h3 className="font-montserrat text-2xl font-black uppercase text-brand-navy">Qué incluye</h3>
+                <h3 className="font-montserrat text-2xl font-extrabold text-brand-navy tracking-tight">Qué incluye</h3>
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {promo.highlights.map((text) => (

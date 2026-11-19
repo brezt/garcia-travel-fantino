@@ -56,7 +56,7 @@ export default function ContactPage() {
             <ArrowLeft size={16} />
             Volver al inicio
           </Link>
-          <h1 className="font-montserrat text-4xl font-black uppercase text-white md:text-5xl">Contacto</h1>
+          <h1 className="font-montserrat text-3xl font-extrabold text-white md:text-[2.75rem] tracking-tight">Contacto</h1>
           <p className="mt-4 max-w-2xl text-base leading-8 text-white/80">
             Cuéntanos a dónde quieres ir y te preparamos una cotización personalizada. La forma más rápida es WhatsApp.
           </p>

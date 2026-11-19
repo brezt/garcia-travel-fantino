@@ -18,7 +18,7 @@ export default function NotFound() {
       <section className="flex min-h-[80vh] flex-col items-center justify-center bg-brand-navy px-6 pb-20 pt-44 md:pt-48 text-center">
         <PelicanoBicicleta width={420} height={294} className="w-64 md:w-96" />
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">Error 404</p>
-        <h1 className="mt-2 font-montserrat text-3xl font-black uppercase text-white md:text-5xl">
+        <h1 className="mt-2 font-montserrat text-3xl font-extrabold text-white md:text-[2.75rem] tracking-tight">
           Este destino no existe
         </h1>
         <p className="mt-4 max-w-md text-white/75">

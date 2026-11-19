@@ -27,7 +27,7 @@ const LegalPage = ({ title, path, updatedAt, sections }: LegalPageProps) => (
           <ArrowLeft size={16} />
           Volver al inicio
         </Link>
-        <h1 className="font-montserrat text-4xl font-black uppercase text-white md:text-5xl">{title}</h1>
+        <h1 className="font-montserrat text-3xl font-extrabold text-white md:text-[2.75rem] tracking-tight">{title}</h1>
         <p className="mt-4 text-sm text-white/60">Última actualización: {updatedAt}</p>
       </div>
     </section>
@@ -35,7 +35,7 @@ const LegalPage = ({ title, path, updatedAt, sections }: LegalPageProps) => (
       <div className="mx-auto max-w-3xl space-y-10">
         {sections.map((section) => (
           <article key={section.title}>
-            <h2 className="mb-3 font-montserrat text-xl font-black uppercase text-brand-navy">{section.title}</h2>
+            <h2 className="mb-3 font-montserrat text-xl font-extrabold text-brand-navy tracking-tight">{section.title}</h2>
             {section.body.map((paragraph) => (
               <p key={paragraph} className="mb-3 leading-7 text-brand-navy/75">
                 {paragraph}

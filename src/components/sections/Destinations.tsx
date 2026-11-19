@@ -15,8 +15,8 @@ const Destinations = () => {
           <p className="text-brand-teal text-xs font-bold tracking-[0.2em] uppercase mb-2">
             Destinos Estrella
           </p>
-          <h2 className="text-4xl md:text-5xl font-black text-brand-navy font-montserrat uppercase">
-            Explora lo Inexplorado
+          <h2 className="text-3xl md:text-[2.75rem] font-extrabold text-brand-navy font-montserrat tracking-tight">
+            Explora lo inexplorado
           </h2>
         </div>
 
@@ -39,7 +39,7 @@ const Destinations = () => {
               <span className="bg-brand-teal text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
                 Más popular
               </span>
-              <h3 className="text-3xl font-black text-white font-montserrat uppercase">
+              <h3 className="text-3xl font-extrabold text-white font-montserrat tracking-tight">
                 Punta Cana
               </h3>
               <p className="text-white/80 text-sm mt-2 max-w-md">
@@ -70,7 +70,7 @@ const Destinations = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6">
-              <h3 className="text-xl font-black text-white font-montserrat uppercase">
+              <h3 className="text-xl font-extrabold text-white font-montserrat tracking-tight">
                 Samaná
               </h3>
               <p className="text-white/80 text-xs mt-1">
@@ -101,7 +101,7 @@ const Destinations = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6">
-              <h3 className="text-xl font-black text-white font-montserrat uppercase">
+              <h3 className="text-xl font-extrabold text-white font-montserrat tracking-tight">
                 Bayahibe
               </h3>
               <p className="text-white/80 text-xs mt-1">
@@ -133,7 +133,7 @@ const Destinations = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6 w-full flex justify-between items-end">
               <div>
-                <h3 className="text-2xl font-black text-white font-montserrat uppercase">
+                <h3 className="text-2xl font-extrabold text-white font-montserrat tracking-tight">
                   Puerto Plata
                 </h3>
                 <p className="text-white/80 text-sm mt-1">
@@ -165,10 +165,10 @@ const Destinations = () => {
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-black text-white font-montserrat uppercase leading-tight mb-3 relative z-10">
+            <h3 className="text-2xl font-extrabold text-white font-montserrat leading-tight mb-3 relative z-10 tracking-tight">
               Viajes
               <br />
-              Internacionales
+              internacionales
             </h3>
             <p className="text-white/80 text-xs mb-6 relative z-10">
               Cruceros y destinos globales desde Fantino para el mundo.

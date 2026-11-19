@@ -49,7 +49,7 @@ const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-brand-cyan">
             {page.eyebrow}
           </p>
-          <h1 className="max-w-4xl font-montserrat text-4xl font-black uppercase leading-tight text-white md:text-6xl">
+          <h1 className="max-w-4xl font-montserrat text-3xl font-extrabold leading-tight text-white md:text-5xl tracking-tight">
             {page.title}
           </h1>
           <p className="mt-5 max-w-2xl text-base font-medium leading-8 text-white/85 md:text-lg">
@@ -112,7 +112,7 @@ const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
               <div className="grid gap-8">
                 {page.sections.map((section) => (
                   <article key={section.title}>
-                    <h2 className="mb-3 font-montserrat text-2xl font-black uppercase text-brand-navy">
+                    <h2 className="mb-3 font-montserrat text-2xl font-extrabold text-brand-navy tracking-tight">
                       {section.title}
                     </h2>
                     <p className="leading-8 text-brand-navy/70">{section.body}</p>
@@ -123,7 +123,7 @@ const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
 
             {page.faq.length > 0 ? (
             <div className="rounded-[2rem] bg-white p-8 shadow-sm md:p-10">
-              <h2 className="mb-6 font-montserrat text-2xl font-black uppercase text-brand-navy">
+              <h2 className="mb-6 font-montserrat text-2xl font-extrabold text-brand-navy tracking-tight">
                 Preguntas frecuentes
               </h2>
               <div className="grid gap-5">
@@ -146,7 +146,7 @@ const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
             <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-brand-cyan">
               Incluye y destaca
             </p>
-            <h2 className="mb-6 font-montserrat text-2xl font-black uppercase">
+            <h2 className="mb-6 font-montserrat text-2xl font-extrabold tracking-tight">
               Lo que puedes consultar
             </h2>
             <ul className="mb-8 space-y-4">
@@ -192,7 +192,7 @@ const TravelContentPage = ({ page, related = [] }: TravelContentPageProps) => {
         <section className="px-6 pb-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-              <h2 className="font-montserrat text-3xl font-black uppercase text-brand-navy md:text-4xl">
+              <h2 className="font-montserrat text-3xl font-extrabold text-brand-navy md:text-3xl tracking-tight">
                 {isPackage ? "Otras promociones" : "Otros destinos"}
               </h2>
               <Link

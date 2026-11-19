@@ -12,7 +12,7 @@ const LatestPosts = ({ posts }: { posts: PostSummary[] }) => {
         <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal">Blog de viajes</p>
-            <h2 className="font-montserrat text-4xl font-black uppercase text-brand-navy md:text-5xl">
+            <h2 className="font-montserrat text-3xl font-extrabold text-brand-navy md:text-[2.75rem] tracking-tight">
               Ideas para tu próximo viaje
             </h2>
           </div>

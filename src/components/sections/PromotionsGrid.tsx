@@ -12,7 +12,7 @@ const PromotionsGrid = ({ promotions }: { promotions: ContentPage[] }) => {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-teal">Salidas vigentes</p>
-          <h2 className="font-montserrat text-4xl font-black uppercase text-brand-navy md:text-5xl">
+          <h2 className="font-montserrat text-3xl font-extrabold text-brand-navy md:text-[2.75rem] tracking-tight">
             Promociones
           </h2>
         </div>
@@ -38,7 +38,7 @@ const PromotionsGrid = ({ promotions }: { promotions: ContentPage[] }) => {
                 ) : null}
               </div>
               <div className="flex flex-1 flex-col p-7">
-                <h3 className="font-montserrat text-xl font-black uppercase leading-tight text-brand-navy">
+                <h3 className="font-montserrat text-xl font-extrabold leading-tight text-brand-navy tracking-tight">
                   {promo.title}
                 </h3>
                 <div className="mt-3 space-y-1 text-xs text-brand-navy/60">

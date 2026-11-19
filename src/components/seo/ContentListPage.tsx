@@ -29,7 +29,7 @@ const ContentListPage = ({ eyebrow, title, intro, pages, emptyText, whatsappMess
           Volver al inicio
         </Link>
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">{eyebrow}</p>
-        <h1 className="mt-2 font-montserrat text-4xl font-black uppercase text-white md:text-6xl">{title}</h1>
+        <h1 className="mt-2 font-montserrat text-3xl font-extrabold text-white md:text-5xl tracking-tight">{title}</h1>
         <p className="mt-6 max-w-3xl text-base leading-8 text-white/80 md:text-lg">{intro}</p>
       </div>
     </section>
