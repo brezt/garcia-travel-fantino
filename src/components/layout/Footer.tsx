@@ -32,7 +32,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2A2C32] text-white pt-20 pb-8 px-6">
+    <footer className="bg-[#2A2C32] text-white pt-20 pb-28 md:pb-8 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 lg:gap-24 mb-16">
         <div className="flex-1 max-w-sm">
           <Link href="/" className="inline-flex items-center mb-6 -ml-3">

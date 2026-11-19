@@ -4,6 +4,7 @@ import { getSiteUrl, siteConfig } from "@/lib/site";
 import MotionProvider from "@/components/providers/MotionProvider";
 import WebMcpTools from "@/components/agents/WebMcpTools";
 import Analytics from "@/components/analytics/Analytics";
+import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import { getSiteJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
@@ -107,6 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getSiteJsonLd()) }}
         />
         <MotionProvider>{children}</MotionProvider>
+        <WhatsAppFloat />
         <WebMcpTools />
         <Analytics />
       </body>
