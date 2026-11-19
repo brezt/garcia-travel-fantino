@@ -51,7 +51,8 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center group relative z-50">
           <Image
-            src="/images/logo-garcia-travel-fantino-360.webp"
+            // Sobre la foto o el fondo oscuro va el logo con letras blancas; con el menú blanco, el original.
+            src={isScrolled ? "/images/logo-garcia-travel-fantino-360.webp" : "/images/logo-garcia-travel-fantino-blanco-360.webp"}
             alt="Garcia Travel Fantino"
             width={512}
             height={512}
