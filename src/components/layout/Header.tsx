@@ -60,7 +60,7 @@ const Header = () => {
               "transition-all duration-500 drop-shadow-xl object-contain origin-left",
               isScrolled
                 ? "w-[100px] md:w-[130px] -my-2"
-                : "w-[150px] md:w-[180px] -my-4"
+                : "w-[110px] md:w-[180px] -my-2 md:-my-4"
             )}
           />
         </Link>
