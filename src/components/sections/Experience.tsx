@@ -23,8 +23,8 @@ const Experience = () => {
 
         <motion.div data-reveal initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="w-full lg:w-1/2">
           <p className="text-brand-teal text-xs font-bold tracking-[0.2em] uppercase mb-4">Garcia Travel Fantino</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-brand-navy leading-tight font-montserrat uppercase mb-6">
-            Diseñamos Viajes <br/><span className="font-playfair italic text-brand-teal lowercase text-5xl md:text-6xl lg:text-7xl">con</span> Propósito
+          <h2 className="text-3xl md:text-[2.75rem] lg:text-5xl font-extrabold text-brand-navy leading-tight font-montserrat mb-6 tracking-tight">
+            Diseñamos viajes <br/><span className="font-playfair italic text-brand-teal lowercase text-4xl md:text-5xl lg:text-6xl">con</span> propósito
           </h2>
           <p className="text-brand-navy/60 text-base md:text-lg mb-10 leading-relaxed max-w-lg font-inter">
             En Garcia Travel Fantino, no solo vendemos boletos o reservamos hoteles. Nos dedicamos a diseñar experiencias a medida, conectando cada servicio con asesoría directa para que tú no debas preocuparte por nada.

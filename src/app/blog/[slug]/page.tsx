@@ -63,7 +63,7 @@ const components: PortableTextComponents = {
       ) : null,
   },
   block: {
-    h2: ({ children }) => <h2 className="mb-4 mt-10 font-montserrat text-2xl font-black uppercase text-brand-navy">{children}</h2>,
+    h2: ({ children }) => <h2 className="mb-4 mt-10 font-montserrat text-2xl font-extrabold text-brand-navy tracking-tight">{children}</h2>,
     h3: ({ children }) => <h3 className="mb-3 mt-8 font-montserrat text-xl font-black text-brand-navy">{children}</h3>,
     blockquote: ({ children }) => (
       <blockquote className="my-6 border-l-4 border-brand-teal pl-5 italic text-brand-navy/80">{children}</blockquote>
@@ -145,7 +145,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <time dateTime={post.publishedAt} className="block text-xs font-bold uppercase tracking-[0.2em] text-brand-cyan">
             {formatDate(post.publishedAt)}
           </time>
-          <h1 className="mt-3 font-montserrat text-3xl font-black uppercase leading-tight text-white md:text-5xl">
+          <h1 className="mt-3 font-montserrat text-3xl font-extrabold leading-tight text-white md:text-[2.75rem] tracking-tight">
             {post.title}
           </h1>
           <p className="mt-4 text-lg text-white/80">{post.excerpt}</p>

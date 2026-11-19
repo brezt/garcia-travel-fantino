@@ -34,7 +34,7 @@ const ContentCard = ({ page, headingLevel = "h3" }: ContentCardProps) => {
         ) : null}
       </div>
       <div className="flex flex-1 flex-col p-7">
-        <Heading className="font-montserrat text-xl font-black uppercase leading-tight text-brand-navy">
+        <Heading className="font-montserrat text-xl font-extrabold leading-tight text-brand-navy tracking-tight">
           {page.title}
         </Heading>
         <div className="mt-3 space-y-1 text-xs text-brand-navy/60">

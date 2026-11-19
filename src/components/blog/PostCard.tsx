@@ -23,7 +23,7 @@ const PostCard = ({ post }: { post: PostSummary }) => (
       <time dateTime={post.publishedAt} className="text-[11px] font-bold uppercase tracking-widest text-brand-teal">
         {formatDate(post.publishedAt)}
       </time>
-      <h3 className="mt-2 font-montserrat text-xl font-black uppercase leading-tight text-brand-navy">{post.title}</h3>
+      <h3 className="mt-2 font-montserrat text-xl font-extrabold leading-tight text-brand-navy tracking-tight">{post.title}</h3>
       <p className="mt-3 line-clamp-3 text-sm leading-6 text-brand-navy/70">{post.excerpt}</p>
     </div>
   </Link>

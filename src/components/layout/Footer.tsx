@@ -32,16 +32,16 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2A2C32] text-white pt-20 pb-8 px-6">
+    <footer className="bg-[#2A2C32] text-white pt-20 pb-28 md:pb-8 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 lg:gap-24 mb-16">
         <div className="flex-1 max-w-sm">
-          <Link href="/" className="inline-flex items-center mb-6 rounded-2xl bg-white px-4 py-3 shadow-lg shadow-black/20">
+          <Link href="/" className="inline-flex items-center mb-6 -ml-3">
             <Image
-              src="/images/logo-garcia-travel-fantino-360.webp"
+              src="/images/logo-garcia-travel-fantino-blanco-360.webp"
               alt="Garcia Travel Fantino"
               width={512}
               height={512}
-              className="w-[170px] md:w-[210px] h-auto object-contain drop-shadow-sm"
+              className="w-[170px] md:w-[210px] h-auto object-contain"
             />
           </Link>
           <p className="text-white/50 text-xs leading-relaxed mb-8">

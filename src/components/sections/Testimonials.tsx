@@ -11,7 +11,7 @@ const Testimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
     <section className="py-24 px-6 bg-brand-slate" id="testimonios">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-brand-navy font-montserrat uppercase">Voces de Nuestros Viajeros</h2>
+          <h2 className="text-3xl md:text-[2.75rem] font-extrabold text-brand-navy font-montserrat tracking-tight">Voces de nuestros viajeros</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {testimonials.map((testimonial, index) => (

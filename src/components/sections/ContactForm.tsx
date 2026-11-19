@@ -61,7 +61,7 @@ const ContactForm = () => {
         <div className="bg-white rounded-[2.5rem] shadow-xl overflow-hidden flex flex-col md:flex-row">
           <div className="bg-brand-teal p-12 md:w-5/12 flex flex-col relative overflow-hidden">
             <div className="absolute top-0 right-0 opacity-10 transform translate-x-1/3 -translate-y-1/3"><svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
-            <h2 className="text-4xl md:text-5xl font-black text-white font-montserrat uppercase leading-tight mb-4 relative z-10">Empieza <br/> Tu Viaje</h2>
+            <h2 className="text-3xl md:text-[2.75rem] font-extrabold text-white font-montserrat leading-tight mb-4 relative z-10 tracking-tight">Empieza <br/> tu viaje</h2>
             <p className="text-white/80 text-sm mb-10 relative z-10 max-w-xs">Escríbenos ahora por WhatsApp o completa el formulario para una atención personalizada inmediata.</p>
             <button onClick={() => openWhatsApp("Hola Garcia Travel, me gustaría hacer una consulta.", "contacto")} className="bg-white text-brand-teal text-xs font-bold px-8 py-4 rounded-full uppercase tracking-wider mb-8 flex items-center justify-center gap-2 relative z-10 hover:bg-brand-slate transition-colors w-max shadow-lg"><Phone size={16} />Escribir por WhatsApp</button>
             <div className="relative z-10 mb-10 h-36 w-full overflow-hidden rounded-2xl border border-white/20 shadow-lg">

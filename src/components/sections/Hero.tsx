@@ -49,7 +49,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden flex items-center justify-center pt-20">
+    <section className="relative min-h-[100svh] md:h-[90vh] md:min-h-[700px] w-full overflow-hidden flex items-center justify-center pt-32 pb-28 md:pt-20 md:pb-0">
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-beach.webp"
@@ -98,15 +98,15 @@ const Hero = () => {
         >
           {/* Todo el lema va dentro del h1 para que Google lea el nombre de la agencia en el título principal. */}
           <h1 className="flex flex-col items-center">
-            <span className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
+            <span className="text-[2.6rem] sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] sm:leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
               Descubre el <br />
               Mundo
             </span>
-            <span className="flex items-center gap-4 mt-2">
-              <span className="font-playfair italic text-5xl md:text-7xl text-brand-cyan lowercase">
+            <span className="flex flex-col lg:flex-row items-center lg:gap-4 mt-1 lg:mt-2">
+              <span className="font-playfair italic text-4xl sm:text-5xl md:text-7xl text-brand-cyan lowercase leading-none mb-1 lg:mb-0">
                 con
               </span>
-              <span className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
+              <span className="text-[2.6rem] sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] sm:leading-[0.9] font-montserrat tracking-tight shadow-black/10 drop-shadow-xl uppercase">
                 Garcia Travel
               </span>
             </span>
