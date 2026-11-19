@@ -15,6 +15,16 @@ const webMcpFormAttributes = {
     "Envía a Garcia Travel Fantino una solicitud de cotización de viaje con nombre, teléfono, correo, fecha estimada y mensaje. Un asesor responde por WhatsApp o teléfono.",
 } as React.FormHTMLAttributes<HTMLFormElement>;
 
+const labelClass = "mb-2 block text-sm font-semibold text-brand-navy";
+const fieldClass =
+  "w-full rounded-xl border border-brand-navy/15 bg-brand-slate px-4 py-3 text-base text-brand-navy placeholder:text-brand-navy/40 transition-colors focus:border-brand-teal focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/20";
+
+/** Fecha de hoy (AAAA-MM-DD, hora local) para no dejar elegir fechas pasadas. */
+const todayLocal = () => {
+  const now = new Date();
+  return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+};
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", date: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -30,13 +40,16 @@ const ContactForm = () => {
     if (isSending) return;
     setIsSending(true);
 
+    // La fecha llega como AAAA-MM-DD; se guarda y se envía como DD/MM/AAAA.
+    const fecha = formData.date ? formData.date.split("-").reverse().join("/") : "";
+
     // Primero se guarda en el panel /admin; si falla, igual se abre WhatsApp.
     await guardarSolicitud({
       origen: "formulario",
       nombre: formData.name,
       telefono: formData.phone,
       email: formData.email,
-      fecha: formData.date,
+      fecha,
       mensaje: formData.message,
       website: trap,
     });
@@ -45,7 +58,7 @@ const ContactForm = () => {
 *Nombre:* ${formData.name}
 *Teléfono:* ${formData.phone}
 *Email:* ${formData.email}
-*Fecha Estimada:* ${formData.date}
+*Fecha aproximada:* ${fecha}
 *Mensaje:* ${formData.message}`;
     setIsSending(false);
     trackContactFormSubmit();
@@ -59,7 +72,7 @@ const ContactForm = () => {
     <section className="py-24 px-6 bg-brand-slate" id="contacto">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-[2.5rem] shadow-xl overflow-hidden flex flex-col md:flex-row">
-          <div className="bg-brand-teal p-12 md:w-5/12 flex flex-col relative overflow-hidden">
+          <div className="bg-brand-teal p-8 md:p-12 md:w-5/12 flex flex-col relative overflow-hidden">
             <div className="absolute top-0 right-0 opacity-10 transform translate-x-1/3 -translate-y-1/3"><svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></div>
             <h2 className="text-3xl md:text-[2.75rem] font-extrabold text-white font-montserrat leading-tight mb-4 relative z-10 tracking-tight">Empieza <br/> tu viaje</h2>
             <p className="text-white/80 text-sm mb-10 relative z-10 max-w-xs">Escríbenos ahora por WhatsApp o completa el formulario para una atención personalizada inmediata.</p>
@@ -75,7 +88,7 @@ const ContactForm = () => {
             </div>
           </div>
 
-          <div className="p-12 md:w-7/12 bg-white flex items-center justify-center">
+          <div className="p-8 md:p-12 md:w-7/12 bg-white flex items-center justify-center">
             {isSubmitted ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center w-full">
                 <div className="w-20 h-20 bg-brand-teal/10 rounded-full flex items-center justify-center mx-auto mb-6"><Send className="text-brand-teal w-10 h-10" /></div>
@@ -84,17 +97,34 @@ const ContactForm = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="relative w-full" {...webMcpFormAttributes}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                  <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Nombre Completo</label><input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="Juan Pérez" /></div>
-                  <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Teléfono</label><input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="+1 829..." /></div>
-                  <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Email</label><input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="juan@ejemplo.com" /></div>
-                  <div><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Fecha Estimada</label><input type="text" name="date" value={formData.date} onChange={handleChange} className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors" placeholder="DD/MM/AA" /></div>
-                  <div className="md:col-span-2"><label className="block text-[10px] font-bold text-brand-navy/50 uppercase tracking-widest mb-2">Tu Mensaje</label><textarea name="message" value={formData.message} onChange={handleChange} rows={3} className="w-full border-b border-brand-slate py-2 text-sm text-brand-navy outline-none focus:border-brand-teal transition-colors resize-none" placeholder="¿Cómo podemos ayudarte a planear tu viaje perfecto?"></textarea></div>
+                <h3 className="font-montserrat text-2xl font-extrabold tracking-tight text-brand-navy">Envíanos tu solicitud</h3>
+                <p className="mt-2 mb-8 text-sm text-brand-navy/60">Te respondemos por WhatsApp o por teléfono. Los campos con * son obligatorios.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                  <div>
+                    <label htmlFor="contacto-nombre" className={labelClass}>Nombre completo *</label>
+                    <input id="contacto-nombre" type="text" name="name" autoComplete="name" value={formData.name} onChange={handleChange} required className={fieldClass} placeholder="Juan Pérez" />
+                  </div>
+                  <div>
+                    <label htmlFor="contacto-telefono" className={labelClass}>Teléfono / WhatsApp *</label>
+                    <input id="contacto-telefono" type="tel" name="phone" autoComplete="tel" inputMode="tel" value={formData.phone} onChange={handleChange} required className={fieldClass} placeholder="+1 829 000 0000" />
+                  </div>
+                  <div>
+                    <label htmlFor="contacto-email" className={labelClass}>Correo electrónico *</label>
+                    <input id="contacto-email" type="email" name="email" autoComplete="email" value={formData.email} onChange={handleChange} required className={fieldClass} placeholder="juan@ejemplo.com" />
+                  </div>
+                  <div>
+                    <label htmlFor="contacto-fecha" className={labelClass}>Fecha aproximada del viaje</label>
+                    <input id="contacto-fecha" type="date" name="date" onFocus={(e) => { e.currentTarget.min = todayLocal(); }} value={formData.date} onChange={handleChange} className={fieldClass} />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label htmlFor="contacto-mensaje" className={labelClass}>¿A dónde te gustaría ir?</label>
+                    <textarea id="contacto-mensaje" name="message" value={formData.message} onChange={handleChange} rows={4} className={`${fieldClass} resize-none`} placeholder="Ej.: Punta Cana en marzo, 2 adultos y 1 niño, todo incluido."></textarea>
+                  </div>
                 </div>
                 <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
                   <label>No completar<input type="text" name="website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} /></label>
                 </div>
-                <button type="submit" disabled={isSending} className="w-full bg-brand-teal text-white font-bold tracking-widest text-xs uppercase py-4 rounded-xl hover:bg-brand-navy transition-colors disabled:opacity-60">{isSending ? "Enviando…" : "Enviar Mensaje"}</button>
+                <button type="submit" disabled={isSending} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-teal py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-brand-teal/20 transition-colors hover:bg-brand-navy disabled:opacity-60"><Send size={16} aria-hidden="true" />{isSending ? "Enviando…" : "Enviar solicitud"}</button>
               </form>
             )}
           </div>
