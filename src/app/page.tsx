@@ -10,6 +10,7 @@ import Experience from "@/components/sections/Experience";
 import MissionVisionValues from "@/components/sections/MissionVisionValues";
 import Testimonials from "@/components/sections/Testimonials";
 import ContactForm from "@/components/sections/ContactForm";
+import CTA from "@/components/sections/CTA";
 import PromotionsGrid from "@/components/sections/PromotionsGrid";
 import LatestPosts from "@/components/sections/LatestPosts";
 import { getActivePackages, getDestinations, getPosts, getTestimonials } from "@/lib/cms";
@@ -45,6 +46,7 @@ export default async function Home() {
       <MissionVisionValues />
       <Packages />
       <Testimonials testimonials={testimonials} />
+      <CTA />
       <LatestPosts posts={posts} />
       <ContactForm />
       <Footer />
