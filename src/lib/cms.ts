@@ -142,17 +142,22 @@ export type Testimonial = {
   role: string;
   content: string;
   highlight: boolean;
+  /** Estrellas (1 a 5). Si falta, se muestran 5. */
+  rating?: number;
 };
 
+// Reseñas reales del Perfil de Empresa de Google (copiadas el 19/11/2026).
 const localTestimonials: Testimonial[] = [
-  { name: "María Rodríguez", role: "Viaje a Punta Cana", content: "Fantástica experiencia. El equipo de Garcia Travel se encargó de todo. ¡Definitivamente volveremos a viajar con ellos!", highlight: false },
-  { name: "David Suriel", role: "Viaje a Europa", content: "Nuestra luna de miel fue espectacular gracias a Garcia Travel. Su atención a cada detalle marcó una gran diferencia.", highlight: true },
-  { name: "Laura Jiménez", role: "Viaje Familiar", content: "Los niños disfrutaron muchísimo. Encontraron el resort perfecto para nosotros. ¡100% recomendados!", highlight: false },
+  { name: "Junior Francisco Peña Rosario", role: "Reseña en Google", content: "Es la mejor agencia que he tenido el placer de usar sus servicios.", highlight: false },
+  { name: "Eridania", role: "Reseña en Google", content: "La mejor agencia García Travel Fantino: seriedad, dedicación y seguimiento. No hay duda, recomendada al 100 💯💪", highlight: true },
+  { name: "Marianely Reyes", role: "Reseña en Google", content: "La agencia de viajes Garcia Travel, la recomiendo, ofrece muy buenos servicios y la atención es muy agradable.", highlight: false },
+  { name: "Ana Portorreal", role: "Reseña en Google", content: "Excelente la experiencia con ellos, al 100 recomendado.", highlight: false },
+  { name: "Enmanuel Mata Castillo", role: "Reseña en Google", content: "Excelentes servicios, se las recomiendo por experiencia.", highlight: false, rating: 4 },
 ];
 
 export const getTestimonials = async () => {
   const docs = await cmsFetch<Testimonial[]>(
-    `*[_type == "testimonio"] | order(coalesce(order, 999) asc, _createdAt desc)[0...3]{
+    `*[_type == "testimonio"] | order(coalesce(order, 999) asc, _createdAt desc)[0...6]{
       name,
       "role": coalesce(trip, ""),
       content,
