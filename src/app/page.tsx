@@ -15,16 +15,18 @@ import PromotionsGrid from "@/components/sections/PromotionsGrid";
 import LatestPosts from "@/components/sections/LatestPosts";
 import { getActivePackages, getDestinations, getPosts, getTestimonials } from "@/lib/cms";
 import { getHomeJsonLd } from "@/lib/structured-data";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
 // Se regenera como mucho cada minuto (y al momento con el webhook del panel).
 export const revalidate = 60;
 
 export default async function Home() {
-  const [activePackages, destinations, testimonials, posts] = await Promise.all([
+  const [activePackages, destinations, testimonials, posts, googleReviews] = await Promise.all([
     getActivePackages(),
     getDestinations(),
     getTestimonials(),
     getPosts(3),
+    getGoogleReviews(),
   ]);
   const featured = activePackages.find((travelPackage) => travelPackage.featured);
   const otherPromotions = activePackages.filter((travelPackage) => travelPackage !== featured);
@@ -45,7 +47,7 @@ export default async function Home() {
       <Experience />
       <MissionVisionValues />
       <Packages />
-      <Testimonials testimonials={testimonials} />
+      <Testimonials testimonials={testimonials} google={googleReviews} />
       <CTA />
       <LatestPosts posts={posts} />
       <ContactForm />
