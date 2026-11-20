@@ -37,7 +37,7 @@ type Card = {
 
 const Testimonials = ({ testimonials, google }: { testimonials: Testimonial[]; google?: GoogleReviews | null }) => {
   const cards: Card[] = google
-    ? google.reviews.slice(0, 3).map((review, index) => ({
+    ? google.reviews.slice(0, 5).map((review, index) => ({
         name: review.author,
         subtitle: review.when ? `Reseña en Google · ${review.when}` : "Reseña en Google",
         content: review.text,
@@ -50,7 +50,7 @@ const Testimonials = ({ testimonials, google }: { testimonials: Testimonial[]; g
         name: testimonial.name,
         subtitle: testimonial.role,
         content: testimonial.content,
-        rating: 5,
+        rating: testimonial.rating ?? 5,
         highlight: testimonial.highlight,
       }));
 
@@ -75,9 +75,9 @@ const Testimonials = ({ testimonials, google }: { testimonials: Testimonial[]; g
             </a>
           ) : null}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div className="flex flex-wrap justify-center items-center gap-8">
           {cards.map((card, index) => (
-            <motion.div key={card.name + index} data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={cn("rounded-3xl p-8 flex flex-col shadow-xl transition-transform hover:-translate-y-2", card.highlight ? "bg-brand-teal text-white md:scale-110 z-10 py-12" : "bg-white text-brand-navy")}>
+            <motion.div key={card.name + index} data-reveal initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={cn("w-full md:w-[calc((100%-4rem)/3)] rounded-3xl p-8 flex flex-col shadow-xl transition-transform hover:-translate-y-2", card.highlight ? "bg-brand-teal text-white md:scale-110 z-10 py-12" : "bg-white text-brand-navy")}>
               <div className="mb-6"><Stars rating={card.rating} /></div>
               <p className={cn("text-sm mb-8 font-inter italic leading-relaxed flex-1 line-clamp-[8]", card.highlight ? "text-white/90 font-medium" : "text-brand-navy/70")}>&ldquo;{card.content}&rdquo;</p>
               <div className="flex items-center gap-4">
